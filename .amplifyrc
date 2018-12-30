@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "oreite-20181209123417-authRole",
+            "UnauthRoleArn": "arn:aws:iam::270270630195:role/oreite-20181209123417-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::270270630195:role/oreite-20181209123417-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "oreite-20181209123417-deployment",
+            "UnauthRoleName": "oreite-20181209123417-unauthRole",
+            "StackName": "oreite-20181209123417",
+            "StackId": "arn:aws:cloudformation:us-west-2:270270630195:stack/oreite-20181209123417/cd208230-fbf1-11e8-8d22-028e369bfbbe"
+        }
+    }
+}

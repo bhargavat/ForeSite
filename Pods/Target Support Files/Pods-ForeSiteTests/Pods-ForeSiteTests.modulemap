@@ -1,0 +1,6 @@
+framework module Pods_ForeSiteTests {
+  umbrella header "Pods-ForeSiteTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -15,6 +15,14 @@
 		042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042B8A5421BDAA1900E02F77 /* LaunchScreen.storyboard */; };
 		042B8A6121BDAA1900E02F77 /* ForeSiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6021BDAA1900E02F77 /* ForeSiteTests.swift */; };
 		042B8A6C21BDAA1900E02F77 /* ForeSiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */; };
+		044534C821D7FEDC008DC137 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 044534C721D7FEDC008DC137 /* awsconfiguration.json */; };
+		044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
+		044534CB21D801FE008DC137 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CA21D801FE008DC137 /* AWSCore.framework */; };
+		044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CC21D8059D008DC137 /* AWSAppSync.framework */; };
+		044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CE21D80643008DC137 /* AWSAuthCore.framework */; };
+		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
+		87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */; };
+		EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C507CA72AE4097036E0C32 /* Pods_ForeSiteUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		035A34D632A78D837C27543E /* Pods-ForeSite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.debug.xcconfig"; sourceTree = "<group>"; };
 		042B8A4521BDAA1800E02F77 /* ForeSite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForeSite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A4821BDAA1800E02F77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		042B8A4A21BDAA1800E02F77 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +58,18 @@
 		042B8A6721BDAA1900E02F77 /* ForeSiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForeSiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeSiteUITests.swift; sourceTree = "<group>"; };
 		042B8A6D21BDAA1900E02F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		044534C721D7FEDC008DC137 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		044534CA21D801FE008DC137 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		044534CE21D80643008DC137 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.release.xcconfig"; sourceTree = "<group>"; };
+		21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.release.xcconfig"; sourceTree = "<group>"; };
+		44C507CA72AE4097036E0C32 /* Pods_ForeSiteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSiteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSiteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		899FAED4B7AE56B863202FE1 /* Pods-ForeSiteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteTests/Pods-ForeSiteTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B65E5C0486C3E6CD930F06F /* Pods-ForeSiteUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BCD999409A75102F56330EDC /* Pods-ForeSiteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteTests/Pods-ForeSiteTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +77,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */,
+				044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */,
+				044534CB21D801FE008DC137 /* AWSCore.framework in Frameworks */,
+				2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +110,8 @@
 				042B8A5F21BDAA1900E02F77 /* ForeSiteTests */,
 				042B8A6A21BDAA1900E02F77 /* ForeSiteUITests */,
 				042B8A4621BDAA1800E02F77 /* Products */,
+				769CA7FCD6AB1E0B3DE4D3CD /* Pods */,
+				5619726DED16F8CF3A4DAF94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +128,7 @@
 		042B8A4721BDAA1800E02F77 /* ForeSite */ = {
 			isa = PBXGroup;
 			children = (
+				044534C721D7FEDC008DC137 /* awsconfiguration.json */,
 				042B8A4821BDAA1800E02F77 /* AppDelegate.swift */,
 				042B8A4A21BDAA1800E02F77 /* ViewController.swift */,
 				042B8A4C21BDAA1800E02F77 /* Main.storyboard */,
@@ -128,6 +158,32 @@
 			path = ForeSiteUITests;
 			sourceTree = "<group>";
 		};
+		5619726DED16F8CF3A4DAF94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				044534CE21D80643008DC137 /* AWSAuthCore.framework */,
+				044534CC21D8059D008DC137 /* AWSAppSync.framework */,
+				044534CA21D801FE008DC137 /* AWSCore.framework */,
+				21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */,
+				4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */,
+				44C507CA72AE4097036E0C32 /* Pods_ForeSiteUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		769CA7FCD6AB1E0B3DE4D3CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				035A34D632A78D837C27543E /* Pods-ForeSite.debug.xcconfig */,
+				269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */,
+				BCD999409A75102F56330EDC /* Pods-ForeSiteTests.debug.xcconfig */,
+				899FAED4B7AE56B863202FE1 /* Pods-ForeSiteTests.release.xcconfig */,
+				8B65E5C0486C3E6CD930F06F /* Pods-ForeSiteUITests.debug.xcconfig */,
+				1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 042B8A7021BDAA1900E02F77 /* Build configuration list for PBXNativeTarget "ForeSite" */;
 			buildPhases = (
+				3B6D5DEBD8286375E89071B1 /* [CP] Check Pods Manifest.lock */,
 				042B8A4121BDAA1800E02F77 /* Sources */,
 				042B8A4221BDAA1800E02F77 /* Frameworks */,
 				042B8A4321BDAA1800E02F77 /* Resources */,
+				32C19144240DEE077356B086 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +210,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 042B8A7321BDAA1900E02F77 /* Build configuration list for PBXNativeTarget "ForeSiteTests" */;
 			buildPhases = (
+				B2E6C166B1C393B3F2F72D2A /* [CP] Check Pods Manifest.lock */,
 				042B8A5821BDAA1900E02F77 /* Sources */,
 				042B8A5921BDAA1900E02F77 /* Frameworks */,
 				042B8A5A21BDAA1900E02F77 /* Resources */,
@@ -170,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 042B8A7621BDAA1900E02F77 /* Build configuration list for PBXNativeTarget "ForeSiteUITests" */;
 			buildPhases = (
+				60156DE876EE8A7FABC9892D /* [CP] Check Pods Manifest.lock */,
 				042B8A6321BDAA1900E02F77 /* Sources */,
 				042B8A6421BDAA1900E02F77 /* Frameworks */,
 				042B8A6521BDAA1900E02F77 /* Resources */,
@@ -232,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044534C821D7FEDC008DC137 /* awsconfiguration.json in Resources */,
 				042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */,
 				042B8A5321BDAA1900E02F77 /* Assets.xcassets in Resources */,
 				042B8A4E21BDAA1800E02F77 /* Main.storyboard in Resources */,
@@ -254,6 +315,115 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		32C19144240DEE077356B086 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAppSync/AWSAppSync.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthUI/AWSAuthUI.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSUserPoolsSignIn/AWSUserPoolsSignIn.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAppSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSUserPoolsSignIn.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B6D5DEBD8286375E89071B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ForeSite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60156DE876EE8A7FABC9892D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ForeSiteUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2E6C166B1C393B3F2F72D2A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ForeSiteTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		042B8A4121BDAA1800E02F77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -269,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */,
 				042B8A6121BDAA1900E02F77 /* ForeSiteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,9 +605,11 @@
 		};
 		042B8A7121BDAA1900E02F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 035A34D632A78D837C27543E /* Pods-ForeSite.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZMJSH6SW43;
 				INFOPLIST_FILE = ForeSite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,9 +624,11 @@
 		};
 		042B8A7221BDAA1900E02F77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZMJSH6SW43;
 				INFOPLIST_FILE = ForeSite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,6 +643,7 @@
 		};
 		042B8A7421BDAA1900E02F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCD999409A75102F56330EDC /* Pods-ForeSiteTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +664,7 @@
 		};
 		042B8A7521BDAA1900E02F77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 899FAED4B7AE56B863202FE1 /* Pods-ForeSiteTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +685,7 @@
 		};
 		042B8A7721BDAA1900E02F77 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B65E5C0486C3E6CD930F06F /* Pods-ForeSiteUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +705,7 @@
 		};
 		042B8A7821BDAA1900E02F77 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
