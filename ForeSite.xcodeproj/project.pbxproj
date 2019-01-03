@@ -15,13 +15,25 @@
 		042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042B8A5421BDAA1900E02F77 /* LaunchScreen.storyboard */; };
 		042B8A6121BDAA1900E02F77 /* ForeSiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6021BDAA1900E02F77 /* ForeSiteTests.swift */; };
 		042B8A6C21BDAA1900E02F77 /* ForeSiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */; };
-		044534C821D7FEDC008DC137 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 044534C721D7FEDC008DC137 /* awsconfiguration.json */; };
 		044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
 		044534CB21D801FE008DC137 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CA21D801FE008DC137 /* AWSCore.framework */; };
 		044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CC21D8059D008DC137 /* AWSAppSync.framework */; };
 		044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CE21D80643008DC137 /* AWSAuthCore.framework */; };
+		04CB85D621DC68A900549DED /* AWSAuthUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D521DC68A900549DED /* AWSAuthUI.framework */; };
+		04CB85D821DC68B500549DED /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */; };
+		04CB85DA21DC68B500549DED /* AWSCognitoIdentityProviderASF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */; };
+		04CB85DC21DC68B500549DED /* AWSMobileClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DB21DC68B500549DED /* AWSMobileClient.framework */; };
+		04CB85DE21DC68B500549DED /* AWSUserPoolsSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DD21DC68B500549DED /* AWSUserPoolsSignIn.framework */; };
+		04CB85E021DC68B500549DED /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */; };
+		04CB85E221DC68B500549DED /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
+		04CB85E421DC68B500549DED /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E321DC68B500549DED /* Reachability.framework */; };
+		04CB85E621DC68B500549DED /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E521DC68B500549DED /* SQLite.framework */; };
+		04CB85E821DC729100549DED /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E721DC729100549DED /* awsconfiguration.json */; };
+		04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E921DC8AC900549DED /* Images.xcassets */; };
 		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
 		87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */; };
+		95348D951C8413FAB3ED4F7C /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
+		CFBE1BA63A8D687018DB08CE /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */; };
 		EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C507CA72AE4097036E0C32 /* Pods_ForeSiteUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +70,20 @@
 		042B8A6721BDAA1900E02F77 /* ForeSiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForeSiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeSiteUITests.swift; sourceTree = "<group>"; };
 		042B8A6D21BDAA1900E02F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		044534C721D7FEDC008DC137 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		044534CA21D801FE008DC137 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CE21D80643008DC137 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85D521DC68A900549DED /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProviderASF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85DB21DC68B500549DED /* AWSMobileClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSMobileClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85DD21DC68B500549DED /* AWSUserPoolsSignIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSUserPoolsSignIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ForeSiteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ForeSiteUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85E321DC68B500549DED /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85E521DC68B500549DED /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB85E721DC729100549DED /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
+		04CB85E921DC8AC900549DED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +99,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CB85D821DC68B500549DED /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				04CB85DA21DC68B500549DED /* AWSCognitoIdentityProviderASF.framework in Frameworks */,
+				04CB85DC21DC68B500549DED /* AWSMobileClient.framework in Frameworks */,
+				04CB85DE21DC68B500549DED /* AWSUserPoolsSignIn.framework in Frameworks */,
+				04CB85E021DC68B500549DED /* Pods_ForeSiteTests.framework in Frameworks */,
+				04CB85E221DC68B500549DED /* Pods_ForeSiteUITests.framework in Frameworks */,
+				04CB85E421DC68B500549DED /* Reachability.framework in Frameworks */,
+				04CB85E621DC68B500549DED /* SQLite.framework in Frameworks */,
+				04CB85D621DC68A900549DED /* AWSAuthUI.framework in Frameworks */,
 				044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */,
 				044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */,
 				044534CB21D801FE008DC137 /* AWSCore.framework in Frameworks */,
@@ -89,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */,
+				CFBE1BA63A8D687018DB08CE /* Pods_ForeSiteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */,
+				95348D951C8413FAB3ED4F7C /* Pods_ForeSiteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +161,7 @@
 		042B8A4721BDAA1800E02F77 /* ForeSite */ = {
 			isa = PBXGroup;
 			children = (
-				044534C721D7FEDC008DC137 /* awsconfiguration.json */,
+				04CB85E721DC729100549DED /* awsconfiguration.json */,
 				042B8A4821BDAA1800E02F77 /* AppDelegate.swift */,
 				042B8A4A21BDAA1800E02F77 /* ViewController.swift */,
 				042B8A4C21BDAA1800E02F77 /* Main.storyboard */,
@@ -136,6 +169,7 @@
 				042B8A5421BDAA1900E02F77 /* LaunchScreen.storyboard */,
 				042B8A5721BDAA1900E02F77 /* Info.plist */,
 				042B8A4F21BDAA1800E02F77 /* ForeSite.xcdatamodeld */,
+				04CB85E921DC8AC900549DED /* Images.xcassets */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -161,6 +195,15 @@
 		5619726DED16F8CF3A4DAF94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */,
+				04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */,
+				04CB85DB21DC68B500549DED /* AWSMobileClient.framework */,
+				04CB85DD21DC68B500549DED /* AWSUserPoolsSignIn.framework */,
+				04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */,
+				04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */,
+				04CB85E321DC68B500549DED /* Reachability.framework */,
+				04CB85E521DC68B500549DED /* SQLite.framework */,
+				04CB85D521DC68A900549DED /* AWSAuthUI.framework */,
 				044534CE21D80643008DC137 /* AWSAuthCore.framework */,
 				044534CC21D8059D008DC137 /* AWSAppSync.framework */,
 				044534CA21D801FE008DC137 /* AWSCore.framework */,
@@ -292,7 +335,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				044534C821D7FEDC008DC137 /* awsconfiguration.json in Resources */,
+				04CB85E821DC729100549DED /* awsconfiguration.json in Resources */,
+				04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */,
 				042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */,
 				042B8A5321BDAA1900E02F77 /* Assets.xcassets in Resources */,
 				042B8A4E21BDAA1800E02F77 /* Main.storyboard in Resources */,

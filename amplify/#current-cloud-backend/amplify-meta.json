@@ -1,14 +1,36 @@
 {
 	"providers": {
 		"awscloudformation": {
-			"AuthRoleName": "oreite-20181209123417-authRole",
-			"UnauthRoleArn": "arn:aws:iam::270270630195:role/oreite-20181209123417-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::270270630195:role/oreite-20181209123417-authRole",
+			"AuthRoleName": "oreite-20190101174308-authRole",
+			"UnauthRoleArn": "arn:aws:iam::270270630195:role/oreite-20190101174308-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::270270630195:role/oreite-20190101174308-authRole",
 			"Region": "us-west-2",
-			"DeploymentBucketName": "oreite-20181209123417-deployment",
-			"UnauthRoleName": "oreite-20181209123417-unauthRole",
-			"StackName": "oreite-20181209123417",
-			"StackId": "arn:aws:cloudformation:us-west-2:270270630195:stack/oreite-20181209123417/cd208230-fbf1-11e8-8d22-028e369bfbbe"
+			"DeploymentBucketName": "oreite-20190101174308-deployment",
+			"UnauthRoleName": "oreite-20190101174308-unauthRole",
+			"StackName": "oreite-20190101174308",
+			"StackId": "arn:aws:cloudformation:us-west-2:270270630195:stack/oreite-20190101174308/c2107120-0e2f-11e9-a93a-503acbd4dc61"
+		}
+	},
+	"auth": {
+		"cognito1a43d7ab": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/oreite-20190101174308-deployment/amplify-cfn-templates/auth/cognito1a43d7ab-cloudformation-template.yml",
+				"logicalId": "authcognito1a43d7ab"
+			},
+			"lastPushTimeStamp": "2019-01-02T02:38:24.815Z",
+			"output": {
+				"AppClientSecret": "1utau58fhuddc0mh8rsos47v8dbtln8vh9il4uoc3r0754ne1l77",
+				"UserPoolId": "us-west-2_b91LNLBri",
+				"AppClientIDWeb": "7nkq9e2iqafqb2qd334op3t78p",
+				"AppClientID": "3glqo9uf95ve8oor87iei2d7qd",
+				"IdentityPoolId": "us-west-2:9d85d16b-a3b9-4d84-bde7-defa499956f9",
+				"IdentityPoolName": "cognito1a43d7ab_identitypool_1a43d7ab",
+				"UserPoolName": "cognito1a43d7ab_userpool_1a43d7ab"
+			},
+			"lastPushDirHash": "NpCzggoMHdELivoqXjf8TgdZznk=",
+			"[object Object]": {}
 		}
 	},
 	"api": {
@@ -17,48 +39,16 @@
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"securityType": "API_KEY",
-				"GraphQLAPIIdOutput": "fz7qxcy6mzdirlglosabs5clfy",
-				"GraphQLAPIEndpointOutput": "https://z6iwdgs6kvaydovv2vxjndmady.appsync-api.us-west-2.amazonaws.com/graphql",
-				"GraphQLAPIKeyOutput": "da2-mtmrgffztvaktohykfzsib6icy"
+				"GraphQLAPIIdOutput": "k2kzimnlcfby3psjnhqjs3npz4",
+				"GraphQLAPIEndpointOutput": "https://tvedpky4rba3lh747bzy7qhgcy.appsync-api.us-west-2.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-goslc6gpknbnpaztvfxqyjfdn4"
 			},
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/oreite-20181209123417-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"s3TemplateURL": "https://s3.amazonaws.com/oreite-20190101174308-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiforesite"
 			},
-			"lastPushTimeStamp": "2018-12-29T19:10:43.491Z",
-			"lastPushDirHash": "gnLVklRmF2Uj3kcGFi137PQgfqI="
-		},
-		"ForeSite": {
-			"service": "AppSync",
-			"output": {
-				"securityType": "API_KEY",
-				"GraphQLAPIIdOutput": "rqynk7l6lvhxxhzbh3ykgcdkxi",
-				"GraphQLAPIEndpointOutput": "https://7oe3amzuy5a3zc6546q6nmgl5q.appsync-api.us-west-2.amazonaws.com/graphql",
-				"GraphQLAPIKeyOutput": "da2-5mtd4m4imrcstgsdlhr3wiju7m"
-			},
-			"lastPushTimeStamp": "2018-12-11T07:11:17.279Z"
-		}
-	},
-	"auth": {
-		"cognito868d0f98": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation",
-			"[object Object]": {},
-			"lastPushTimeStamp": "2018-12-29T19:10:43.493Z",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/oreite-20181209123417-deployment/amplify-cfn-templates/auth/cognito868d0f98-cloudformation-template.yml",
-				"logicalId": "authcognito868d0f98"
-			},
-			"output": {
-				"AppClientSecret": "15o5v6n3nfpeoqkm472f5r6fkicmmchng2g6ak2v4stlrkd7ifdt",
-				"UserPoolId": "us-west-2_hFJx6CPRE",
-				"AppClientIDWeb": "5pd04o8r14ila1153egt8jb5hk",
-				"AppClientID": "2rbrugeh0hc5k71qjk8ietovb7",
-				"IdentityPoolId": "us-west-2:a1825c6f-0b15-481c-b9be-b5c18dcc0be2",
-				"IdentityPoolName": "cognito868d0f98_identitypool_868d0f98",
-				"UserPoolName": "cognito868d0f98_userpool_868d0f98"
-			},
-			"lastPushDirHash": "KZjVy7zOgacoGttsynTBg9fr0AY="
+			"lastPushTimeStamp": "2019-01-02T02:38:25.484Z",
+			"lastPushDirHash": "qykSWi9CYsQQsyJBXmiAsTNET68="
 		}
 	}
 }
