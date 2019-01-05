@@ -15,10 +15,19 @@ class ViewController: UIViewController {
 
     var appSyncClient: AWSAppSyncClient?
     
-    @IBOutlet weak var signInStateLabel: UILabel!
+    var menuShowing = false
+    
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var signInStateLabel: UILabel!
+    @IBOutlet weak var sidemenuView: UIView!
+    
+    @IBOutlet var pageView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sidemenuView.layer.shadowOpacity = 1
+        sidemenuView.layer.shadowRadius = 6
         
         AWSMobileClient.sharedInstance().initialize { (userState, error) in
             if let userState = userState {
@@ -91,6 +100,28 @@ class ViewController: UIViewController {
         }
         
         AWSMobileClient.sharedInstance().signOut()
+    }
+    
+    
+    @IBAction func openMenu(_ sender: Any) {
+        if (menuShowing){
+            leadingConstraint.constant = -310
+            self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            UIView.animate(withDuration: 0.3,
+                            animations:{
+                            self.view.layoutIfNeeded()
+            })
+            
+        }else{
+            leadingConstraint.constant = 0
+            self.view.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
+            UIView.animate(withDuration: 0.3,
+                            animations:{
+                            self.view.layoutIfNeeded()
+            })
+            
+        }
+        menuShowing = !menuShowing
     }
 }
 

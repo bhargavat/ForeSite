@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1257" y="1"/>
         </scene>
-        <!--View Controller-->
+        <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ForeSite" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,15 +41,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-qT-czp">
+                                <rect key="frame" x="-310" y="0.0" width="300" height="667"/>
+                                <color key="backgroundColor" white="0.89389804509132409" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="o9U-Pz-Sg8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ydf-qT-czp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8Ce-gn-z2a"/>
+                            <constraint firstItem="Ydf-qT-czp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-310" id="YQF-xA-eJS"/>
+                            <constraint firstAttribute="bottom" secondItem="Ydf-qT-czp" secondAttribute="bottom" id="xrW-DM-YqH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HgN-xG-CMx"/>
+                    <navigationItem key="navigationItem" title="Events" id="HgN-xG-CMx">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="sidebar_menu_1x" id="kSc-c2-VOz">
+                            <connections>
+                                <action selector="openMenu:" destination="BYZ-38-t0r" id="MQX-qG-paU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leadingConstraint" destination="YQF-xA-eJS" id="WcX-5J-6GK"/>
+                        <outlet property="pageView" destination="8bC-Xf-vdC" id="oTM-cM-Aty"/>
+                        <outlet property="sidemenuView" destination="Ydf-qT-czp" id="RVb-zq-23x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191" y="0.0"/>
+            <point key="canvasLocation" x="-191.19999999999999" y="-0.44977511244377816"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sidebar_menu_1x" width="36" height="36"/>
+    </resources>
 </document>
