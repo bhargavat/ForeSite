@@ -29,7 +29,7 @@
         <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ForeSite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="events" id="BYZ-38-t0r" customClass="ViewController" customModule="ForeSite" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,9 +43,45 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-qT-czp">
                                 <rect key="frame" x="-310" y="0.0" width="300" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE0-b6-oAg">
+                                        <rect key="frame" x="0.0" y="318" width="300" height="50"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Saz-yF-RNk"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="cxv-tg-VMM"/>
+                                        </constraints>
+                                        <state key="normal" title="Events">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flashButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ih7-3b-kiV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBL-m3-tWU">
+                                        <rect key="frame" x="0.0" y="368" width="300" height="50"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="13p-kH-ATW"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="C1M-bZ-WbD"/>
+                                        </constraints>
+                                        <state key="normal" title="My Orders">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flashButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="129-dp-0py"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.89389804509132409" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iE0-b6-oAg" secondAttribute="trailing" id="055-Qa-lBf"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZBL-m3-tWU" secondAttribute="trailing" id="870-Lf-lQU"/>
+                                    <constraint firstItem="iE0-b6-oAg" firstAttribute="leading" secondItem="Ydf-qT-czp" secondAttribute="leading" id="UsV-qe-nnx"/>
                                     <constraint firstAttribute="width" constant="300" id="o9U-Pz-Sg8"/>
+                                    <constraint firstItem="ZBL-m3-tWU" firstAttribute="leading" secondItem="Ydf-qT-czp" secondAttribute="leading" id="pPh-8S-CoE"/>
+                                    <constraint firstItem="ZBL-m3-tWU" firstAttribute="top" secondItem="Ydf-qT-czp" secondAttribute="top" constant="368" id="r0S-i6-C64"/>
+                                    <constraint firstItem="iE0-b6-oAg" firstAttribute="top" secondItem="Ydf-qT-czp" secondAttribute="top" constant="318" id="tTn-bz-QiM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -68,11 +104,12 @@
                         <outlet property="leadingConstraint" destination="YQF-xA-eJS" id="WcX-5J-6GK"/>
                         <outlet property="pageView" destination="8bC-Xf-vdC" id="oTM-cM-Aty"/>
                         <outlet property="sidemenuView" destination="Ydf-qT-czp" id="RVb-zq-23x"/>
+                        <outletCollection property="sideBarButtons" destination="iE0-b6-oAg" collectionClass="NSMutableArray" id="O84-t4-QNh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191.19999999999999" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="60" y="0.0"/>
         </scene>
     </scenes>
     <resources>

@@ -1,7 +1,7 @@
 {
     "AppSyncApiName": "foresite",
-    "schemaGraphql": "s3://oreite-20190101174308-deployment/amplify-appsync-files/schema.graphql.1546396570403",
-    "ResolverBucket": "oreite-20190101174308-deployment",
+    "schemaGraphql": "s3://oreite-20190110005159-deployment/amplify-appsync-files/schema.graphql.1547110704418",
+    "ResolverBucket": "oreite-20190110005159-deployment",
     "ResolverRootKey": "amplify-appsync-files",
-    "DeploymentTimestamp": "1546396570403"
+    "DeploymentTimestamp": "1547110704418"
 }

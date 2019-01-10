@@ -7,25 +7,25 @@
     "CredentialsProvider": {
         "CognitoIdentity": {
             "Default": {
-                "PoolId": "us-west-2:9d85d16b-a3b9-4d84-bde7-defa499956f9",
+                "PoolId": "us-west-2:29157ff2-d03f-4ae4-a5fa-506cedfbe38b",
                 "Region": "us-west-2"
             }
         }
     },
     "CognitoUserPool": {
         "Default": {
-            "PoolId": "us-west-2_b91LNLBri",
-            "AppClientId": "3glqo9uf95ve8oor87iei2d7qd",
-            "AppClientSecret": "1utau58fhuddc0mh8rsos47v8dbtln8vh9il4uoc3r0754ne1l77",
+            "PoolId": "us-west-2_lwGhCH6jh",
+            "AppClientId": "4octt3523dl318ndfdip103atv",
+            "AppClientSecret": "14ef7ofpn3gu2d8qr2t77tt8fooci1f8ldu0qg7vvh3gv2rh2el6",
             "Region": "us-west-2"
         }
     },
     "AppSync": {
         "Default": {
-            "ApiUrl": "https://tvedpky4rba3lh747bzy7qhgcy.appsync-api.us-west-2.amazonaws.com/graphql",
+            "ApiUrl": "https://fxxpwigoxrgs7nb3om45r4yw3u.appsync-api.us-west-2.amazonaws.com/graphql",
             "Region": "us-west-2",
             "AuthMode": "API_KEY",
-            "ApiKey": "da2-goslc6gpknbnpaztvfxqyjfdn4"
+            "ApiKey": "da2-o5rxygw4lfbtlnhmvymol5o5su"
         }
     }
 }

@@ -26,10 +26,10 @@ PODS:
 
 DEPENDENCIES:
   - AWSAppSync (~> 2.8.0)
-  - AWSAuthUI (~> 2.8.0)
-  - AWSCore (~> 2.8.0)
-  - AWSMobileClient (~> 2.8.0)
-  - AWSUserPoolsSignIn (~> 2.8.0)
+  - AWSAuthUI (~> 2.8.1)
+  - AWSCore (~> 2.8.1)
+  - AWSMobileClient (~> 2.8.1)
+  - AWSUserPoolsSignIn (~> 2.8.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -56,6 +56,6 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
 
-PODFILE CHECKSUM: 817e38a17746cc85681f182c17546c3f690a28aa
+PODFILE CHECKSUM: 523f08590d1183d85136f30e4d4eda21ac913acf
 
 COCOAPODS: 1.5.3

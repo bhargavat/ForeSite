@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     var menuShowing = false
     
+    @IBOutlet var sideBarButtons: [UIButton]!
+    
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
 //    @IBOutlet weak var signInStateLabel: UILabel!
     @IBOutlet weak var sidemenuView: UIView!
@@ -123,5 +125,19 @@ class ViewController: UIViewController {
         }
         menuShowing = !menuShowing
     }
+    
+
+    @IBAction func flashButtonTapped(_ sender: UIButton) {
+        sender.flash()
+        sender.isHighlighted = true
+    }
+
+//    @IBAction func navigateToPage(_ sender: Any) {
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Balance", bundle: nil)
+//        let eventsViewController = storyBoard.instantiateViewController(withIdentifier: "events") as! ViewController
+//        self.present(eventsViewController, animated: true, completion: nil)
+//    }
+    
+
 }
 

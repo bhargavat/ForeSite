@@ -30,6 +30,7 @@
 		04CB85E621DC68B500549DED /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E521DC68B500549DED /* SQLite.framework */; };
 		04CB85E821DC729100549DED /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E721DC729100549DED /* awsconfiguration.json */; };
 		04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E921DC8AC900549DED /* Images.xcassets */; };
+		04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */; };
 		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
 		87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */; };
 		95348D951C8413FAB3ED4F7C /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
@@ -84,6 +85,7 @@
 		04CB85E521DC68B500549DED /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85E721DC729100549DED /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
 		04CB85E921DC8AC900549DED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				042B8A5721BDAA1900E02F77 /* Info.plist */,
 				042B8A4F21BDAA1800E02F77 /* ForeSite.xcdatamodeld */,
 				04CB85E921DC8AC900549DED /* Images.xcassets */,
+				04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042B8A5121BDAA1800E02F77 /* ForeSite.xcdatamodeld in Sources */,
+				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */,
 			);
