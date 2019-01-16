@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Ro-Wp-8kM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <navigationController id="7Ro-Wp-8kM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qzj-sS-NBM">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -31,7 +31,7 @@
             <objects>
                 <viewController storyboardIdentifier="events" id="BYZ-38-t0r" customClass="ViewController" customModule="ForeSite" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You Are Logged In!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qz-EN-wKx">
@@ -41,8 +41,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVH-tT-55t">
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QTq-PG-PPP"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" id="Slg-y8-QBL">
+                                        <inset key="landscapeImageInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <textField key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category:  All" borderStyle="roundedRect" placeholder="Category" minimumFontSize="17" id="6rj-69-z7e">
+                                            <rect key="frame" x="20" y="10" width="113" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" button="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="185" id="FaB-FI-n41"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="cTk-J8-tL1"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="7pg-g9-nTw">
+                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sort By: Relevant" borderStyle="roundedRect" placeholder="Sort By" textAlignment="natural" minimumFontSize="17" id="UPV-z0-gH6">
+                                            <rect key="frame" x="242" y="10" width="152" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-qT-czp">
-                                <rect key="frame" x="-310" y="0.0" width="300" height="667"/>
+                                <rect key="frame" x="-310" y="0.0" width="300" height="896"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iE0-b6-oAg">
                                         <rect key="frame" x="0.0" y="318" width="300" height="50"/>
@@ -56,6 +90,7 @@
                                         </state>
                                         <connections>
                                             <action selector="flashButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ih7-3b-kiV"/>
+                                            <action selector="navigateToPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dUu-5u-Xal"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBL-m3-tWU">
@@ -86,12 +121,19 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="xVH-tT-55t" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3O7-Dr-Cq4"/>
                             <constraint firstItem="Ydf-qT-czp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8Ce-gn-z2a"/>
+                            <constraint firstItem="xVH-tT-55t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TYV-e0-Yxw"/>
                             <constraint firstItem="Ydf-qT-czp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-310" id="YQF-xA-eJS"/>
+                            <constraint firstItem="xVH-tT-55t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fns-k8-bOO"/>
                             <constraint firstAttribute="bottom" secondItem="Ydf-qT-czp" secondAttribute="bottom" id="xrW-DM-YqH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="T21-AD-lrN" appends="YES" id="Gag-r3-COb"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="HgN-xG-CMx">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="sidebar_menu_1x" id="kSc-c2-VOz">
@@ -101,6 +143,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="CategoryField" destination="6rj-69-z7e" id="hwK-ax-Knu"/>
+                        <outlet property="SortField" destination="UPV-z0-gH6" id="c7c-Bo-mFN"/>
+                        <outlet property="eventToolbar" destination="xVH-tT-55t" id="QEc-R9-hW5"/>
                         <outlet property="leadingConstraint" destination="YQF-xA-eJS" id="WcX-5J-6GK"/>
                         <outlet property="pageView" destination="8bC-Xf-vdC" id="oTM-cM-Aty"/>
                         <outlet property="sidemenuView" destination="Ydf-qT-czp" id="RVb-zq-23x"/>
@@ -108,8 +153,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="T21-AD-lrN" userLabel="Left Swipe Gesture">
+                    <connections>
+                        <action selector="swipeSideMenuDismiss:" destination="BYZ-38-t0r" id="rVs-Sw-SIa"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="60" y="0.0"/>
+            <point key="canvasLocation" x="60" y="-0.44977511244377816"/>
         </scene>
     </scenes>
     <resources>
