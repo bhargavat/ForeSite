@@ -62,6 +62,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="selectorFieldSelected:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="8hK-IQ-mLy"/>
+                                            </connections>
                                         </textField>
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="7pg-g9-nTw">
@@ -71,6 +74,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="selectorFieldSelected:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="voM-OB-RU6"/>
+                                            </connections>
                                         </textField>
                                     </barButtonItem>
                                 </items>

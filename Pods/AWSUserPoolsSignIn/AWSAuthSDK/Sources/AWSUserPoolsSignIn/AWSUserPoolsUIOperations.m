@@ -134,19 +134,34 @@ completionHandler:(nonnull void (^)(id _Nullable, NSError * _Nullable))completio
 }
 
 -(void) didCompletePasswordAuthenticationStepWithError:(NSError*) error {
+    NSLog(@"errorType: %@" , error.userInfo[@"__type"]);
+    NSErrorUserInfoKey errorType = error.userInfo[@"__type"];
+    NSErrorUserInfoKey errorTitle = @"Login Failed";
+    NSErrorUserInfoKey errorMessage = error.userInfo[@"message"];
+    
+    if([errorType  isEqual: @"UserNotFoundException"]){
+        errorMessage = @"User Not Found";
+    }else if([errorType  isEqual: @"NotAuthorizedException"]){
+        errorMessage = @"Invalid password";
+        
+    }else if([errorType  isEqual: @"InvalidParameterException"]){
+        errorMessage = @"Missing required fields";
+    }
+    
     if(error){
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:error.userInfo[@"__type"]
-                                                                                     message:error.userInfo[@"message"]
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:errorTitle
+                                                                                     message:errorMessage
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alertController addAction:ok];
             [[self.navigationController viewControllers].firstObject presentViewController:alertController
                                                                                animated:YES
                                                                              completion:nil];
         });
     }
+    
 }
 
 + (UIViewController *)getViewControllerWithName:(NSString *)viewControllerIdentitifer

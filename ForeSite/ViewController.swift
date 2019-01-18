@@ -6,6 +6,7 @@
 //  Copyright © 2018 Bhargava. All rights reserved.
 //
 // GraphQL endpoint: https://z6iwdgs6kvaydovv2vxjndmady.appsync-api.us-west-2.amazonaws.com/graphql
+//cognitobd71c0bf_userpool_bd71c0bf
 // GraphQL API KEY: da2-mtmrgffztvaktohykfzsib6icy
 // References:
 // https://peterwitham.com/swift-archives/how-to-use-a-uipickerview-as-input-for-a-uitextfield/
@@ -23,6 +24,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var currentSort = "Relevant"
     var tempSort = "Relevant"
     var tempCategory = "All"
+    
+    let sideMenuWidth = 310
     
     let categoryOptions = [String](arrayLiteral: "All", "Entertainment", "Food", "Music", "Tech")
     let sortOptions = [String](arrayLiteral: "Relevant", "Nearest", "Cheapest", "Soonest")
@@ -98,10 +101,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             if let userState = userState {
                 print("UserState: \(userState.rawValue)")
             } else if let error = error {
-                print("error: \(error.localizedDescription)")
+                print("Error1: \(error.localizedDescription)")
             }
         }
         
+        //Customize login icon
         AWSMobileClient.sharedInstance()
             .showSignIn(navigationController: self.navigationController!,
                         signInUIOptions: SignInUIOptions(
@@ -124,14 +128,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     print("Unexpected case")
                 }
             } else if let error = error {
+                print("HOO")
                 if let error = error as? AWSMobileClientError {
                     switch(error) {
                     case .usernameExists(let message):
-                        print(message)
+                        print("shoot")
+                        print("shoot: ", message)
                     default:
                         break
                     }
                 }
+//                print("OOPS")
+//                let alert = UIAlertController(title: "Login Failed", message: "Invalid login credentials. Try again.", preferredStyle: .alert)
+//
+//                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
+//
+//                self.present(alert, animated: true)
                 print("\(error.localizedDescription)")
             }
         }
@@ -139,6 +151,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         AWSMobileClient.sharedInstance().signIn(username: "your_username", password: "Abc@123!") { (signInResult, error) in
             if let error = error  {
                 print("\(error.localizedDescription)")
+                print("crap")
+//                let alert = UIAlertController(title: "Login Failed", message: "Invalid login credentials. Try again.", preferredStyle: .alert)
+//
+//                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
+//
+//                self.present(alert, animated: true)
             } else if let signInResult = signInResult {
                 switch (signInResult.signInState) {
                 case .signedIn:
@@ -152,6 +170,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         
         AWSMobileClient.sharedInstance().confirmSignIn(challengeResponse: "code_here") { (signInResult, error) in
+            
             if let error = error  {
                 print("\(error.localizedDescription)")
             } else if let signInResult = signInResult {
@@ -160,6 +179,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     print("User is signed in.")
                 default:
                     print("\(signInResult.signInState.rawValue)")
+                    print("Login failed")
                 }
             }
         }
@@ -167,10 +187,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         AWSMobileClient.sharedInstance().signOut()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if(menuShowing){
+            if let touch = touches.first {
+                let position = touch.location(in: view)
+                print("posX: " , position.x)
+                print(sideMenuWidth)
+                if(Int(position.x) > sideMenuWidth){
+                    openMenu((Any).self)
+                }
+            }
+        }
+    }
     
     @IBAction func openMenu(_ sender: Any) {
+        if (categoryPicker.isHidden == false || sortPicker.isHidden == false){
+            cancelClick()
+        }
         if (menuShowing){
-            leadingConstraint.constant = -310
+            leadingConstraint.constant = CGFloat(sideMenuWidth * -1)
             self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             UIView.animate(withDuration: 0.3,
                             animations:{
@@ -229,10 +264,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             currentCategory = tempCategory
             CategoryField.text = "Category:  " + currentCategory
             CategoryField.textColor = defaultTextColor
+            SortField.isEnabled = true
         }else if(SortField.textColor == selectTextColor){
             SortField.textColor = defaultTextColor
             currentSort = tempSort
-            SortField.text = "Sort By: " + currentSort
+            SortField.text = "Sort By:  " + currentSort
+            CategoryField.isEnabled = true
         }
     }
     @objc func cancelClick() {
@@ -241,22 +278,31 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if(CategoryField.textColor == selectTextColor){
             CategoryField.textColor = defaultTextColor
             CategoryField.text = "Category:  " + currentCategory
-            
             let orig_Index: Int = categoryOptions.firstIndex(of: currentCategory)!
             categoryPicker.selectRow(orig_Index, inComponent: 0, animated: false)
-            
+            SortField.isEnabled = true
 
         }else if(SortField.textColor == selectTextColor){
             SortField.textColor = defaultTextColor
             SortField.text = "Sort By:  " + currentSort
             let orig_Index: Int = sortOptions.firstIndex(of: currentSort)!
             sortPicker.selectRow(orig_Index, inComponent: 0, animated: false)
+            CategoryField.isEnabled = true
             //sortPicker.selectedRow(inComponent: orig_Index)
         }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return textField != self.CategoryField;
+    }
+    
+    @IBAction func selectorFieldSelected(_ sender: UITextField) {
+        sender.textColor = selectTextColor
+        if(sender == CategoryField){
+            SortField.isEnabled = false
+        }else if(sender == SortField){
+            CategoryField.isEnabled = false
+        }
     }
     
     func initialize_categoryPicker(textfield: UITextField, options: UIPickerView){
