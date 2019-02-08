@@ -6,7 +6,8 @@
 //  Copyright © 2018 Bhargava. All rights reserved.
 //
 // GraphQL endpoint: https://z6iwdgs6kvaydovv2vxjndmady.appsync-api.us-west-2.amazonaws.com/graphql
-//cognitobd71c0bf_userpool_bd71c0bf
+// cognitobd71c0bf_userpool_bd71c0bf
+// https://aws-amplify.github.io/docs/ios/authentication
 // GraphQL API KEY: da2-mtmrgffztvaktohykfzsib6icy
 // References:
 // https://peterwitham.com/swift-archives/how-to-use-a-uipickerview-as-input-for-a-uitextfield/
@@ -14,11 +15,12 @@ import UIKit
 import AWSAppSync
 import AWSMobileClient
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
+
     var appSyncClient: AWSAppSyncClient?
     
     var menuShowing = false
+    var dragging = false
     
     var currentCategory = "All"
     var currentSort = "Relevant"
@@ -26,15 +28,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var tempCategory = "All"
     
     let sideMenuWidth = 310
+    var initialTouchPosition = CGFloat(0)
     
     let categoryOptions = [String](arrayLiteral: "All", "Entertainment", "Food", "Music", "Tech")
     let sortOptions = [String](arrayLiteral: "Relevant", "Nearest", "Cheapest", "Soonest")
+    
+    var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
     
     @IBOutlet var sideBarButtons: [UIButton]!
     
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     //    @IBOutlet weak var signInStateLabel: UILabel!
     @IBOutlet weak var sidemenuView: UIView!
+    @IBOutlet weak var eventTableView: UITableView!
+    
     
     @IBOutlet var pageView: UIView!
     
@@ -47,6 +54,37 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBOutlet weak var CategoryField: UITextField!
     @IBOutlet weak var SortField: UITextField!
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sampleEvents.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "EventDetailSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EventViewController {
+            destination.event = sampleEvents[(eventTableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    //Generates the table cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventTableViewCell
+        
+        let event = sampleEvents[indexPath.row]
+        
+        cell.eventTitle?.text = event.title
+        cell.eventStart?.text = event.startDay + " • " + event.startTime
+        cell.eventEnd?.text = event.endDay + " • " + event.endTime
+        cell.eventPrice?.text = event.price
+        cell.eventLocation?.text = event.location
+        cell.eventImage?.image = UIImage(named: event.image)
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        
+        return cell
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -90,22 +128,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sidemenuView.layer.shadowOpacity = 1
-        sidemenuView.layer.shadowRadius = 6
+        self.eventTableView.delegate = self
+        self.eventTableView.dataSource = self
         
-        //SortField.layoutMargins
-        self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
-        self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
+        self.navigationController!.navigationBar.isTranslucent = false
         
         AWSMobileClient.sharedInstance().initialize { (userState, error) in
             if let userState = userState {
                 print("UserState: \(userState.rawValue)")
             } else if let error = error {
-                print("Error1: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription)")
             }
         }
         
-        //Customize login icon
+        //Customize login screen displayed if user is not in logged in state
         AWSMobileClient.sharedInstance()
             .showSignIn(navigationController: self.navigationController!,
                         signInUIOptions: SignInUIOptions(
@@ -115,86 +151,67 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 //handle results and errors
         }
         
-        AWSMobileClient.sharedInstance().signUp(username: "your_username",
-                                                password: "Abc@123!",
-                                                userAttributes: ["email":"john@doe.com", "phone_number": "+1973123456"]) { (signUpResult, error) in
-            if let signUpResult = signUpResult {
-                switch(signUpResult.signUpConfirmationState) {
-                case .confirmed:
-                    print("User is signed up and confirmed.")
-                case .unconfirmed:
-                    print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
-                case .unknown:
-                    print("Unexpected case")
-                }
-            } else if let error = error {
-                print("HOO")
-                if let error = error as? AWSMobileClientError {
-                    switch(error) {
-                    case .usernameExists(let message):
-                        print("shoot")
-                        print("shoot: ", message)
-                    default:
-                        break
-                    }
-                }
-//                print("OOPS")
-//                let alert = UIAlertController(title: "Login Failed", message: "Invalid login credentials. Try again.", preferredStyle: .alert)
-//
-//                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
-//
-//                self.present(alert, animated: true)
-                print("\(error.localizedDescription)")
-            }
-        }
+        sidemenuView.layer.shadowOpacity = 1
+        sidemenuView.layer.shadowRadius = 6
         
-        AWSMobileClient.sharedInstance().signIn(username: "your_username", password: "Abc@123!") { (signInResult, error) in
-            if let error = error  {
-                print("\(error.localizedDescription)")
-                print("crap")
-//                let alert = UIAlertController(title: "Login Failed", message: "Invalid login credentials. Try again.", preferredStyle: .alert)
-//
-//                alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: nil))
-//
-//                self.present(alert, animated: true)
-            } else if let signInResult = signInResult {
-                switch (signInResult.signInState) {
-                case .signedIn:
-                    print("User is signed in.")
-                case .smsMFA:
-                    print("SMS message sent to \(signInResult.codeDetails!.destination!)")
-                default:
-                    print("Sign In needs info which is not et supported.")
-                }
-            }
-        }
-        
-        AWSMobileClient.sharedInstance().confirmSignIn(challengeResponse: "code_here") { (signInResult, error) in
-            
-            if let error = error  {
-                print("\(error.localizedDescription)")
-            } else if let signInResult = signInResult {
-                switch (signInResult.signInState) {
-                case .signedIn:
-                    print("User is signed in.")
-                default:
-                    print("\(signInResult.signInState.rawValue)")
-                    print("Login failed")
-                }
-            }
-        }
-        
-        AWSMobileClient.sharedInstance().signOut()
+        //SortField.layoutMargins
+        self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
+        self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
     }
-    
+
+    //touch gesture event listener
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if(menuShowing){
             if let touch = touches.first {
                 let position = touch.location(in: view)
-                print("posX: " , position.x)
-                print(sideMenuWidth)
+                    initialTouchPosition = position.x
+                if sidemenuView.frame.contains(position){
+                    dragging = true
+                }
+            }
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = event?.allTouches?.first
+        let touchPoint = touch?.location(in: view)
+        if (menuShowing == true && dragging) {
+            let touchX = (touchPoint?.x)!
+            //print("leading: ",leadingConstraint.constant)
+            if(touchX < 300 && leadingConstraint.constant <= 0){
+                //print("moved: ", touchX)
+                let newPos = -1*(initialTouchPosition - touchX)
+                if (newPos <= 0){
+                    leadingConstraint.constant = -1*(initialTouchPosition - touchX)
+                    //print("position: ",leadingConstraint.constant)
+                }
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dragging = false
+        if(menuShowing){
+            if(leadingConstraint.constant < -100){
+                menuShowing = true //close menu
+                openMenu((Any).self)
+            }else{
+                menuShowing = false //keep it open
+                openMenu((Any).self)
+            }
+        }
+        
+        if(menuShowing){
+            if let touch = touches.first {
+                let position = touch.location(in: view)
+                initialTouchPosition = position.x
+                //print("posX: " , position.x)
+                //                print(sideMenuWidth)
                 if(Int(position.x) > sideMenuWidth){
                     openMenu((Any).self)
+                }
+                if sidemenuView.frame.contains(position){
+                    dragging = true
                 }
             }
         }
@@ -207,35 +224,29 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if (menuShowing){
             leadingConstraint.constant = CGFloat(sideMenuWidth * -1)
             self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            UIView.animate(withDuration: 0.3,
+            //self.eventTableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            self.eventTableView.isUserInteractionEnabled = true
+            UIView.animate(withDuration: 0.20,
                             animations:{
                             self.view.layoutIfNeeded()
             })
-            self.eventToolbar.isHidden = false
+            self.eventToolbar.isUserInteractionEnabled = true
+            //self.eventToolbar.isHidden = false
         }else{
             leadingConstraint.constant = 0
-            self.view.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
+            //self.view.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
+            //self.eventTableView.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
+            self.eventTableView.isUserInteractionEnabled = false
+            
             UIView.animate(withDuration: 0.3,
                             animations:{
                             self.view.layoutIfNeeded()
             })
-            self.eventToolbar.isHidden = true
+            //self.eventToolbar.isHidden = true
+            self.eventToolbar.isUserInteractionEnabled = false
         }
         menuShowing = !menuShowing
-    }
-    
-    
-    @IBAction func swipeSideMenuDismiss(_ sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case UISwipeGestureRecognizer.Direction.left:
-            if(menuShowing == true){
-                openMenu(sender)
-            }
-        default:
-            break
-        }
-    }
-    
+    }    
 
     @IBAction func flashButtonTapped(_ sender: UIButton) {
         sender.flash()
@@ -272,6 +283,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             CategoryField.isEnabled = true
         }
     }
+    
     @objc func cancelClick() {
         CategoryField.resignFirstResponder()
         SortField.resignFirstResponder()
@@ -305,6 +317,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    @IBAction func SignOut(_ sender: Any) {
+        AWSMobileClient.sharedInstance().signOut()
+        //shows the sign in page if user is signedout
+        AWSMobileClient.sharedInstance()
+            .showSignIn(navigationController: self.navigationController!,
+                        signInUIOptions: SignInUIOptions(
+                            canCancel: false,
+                            logoImage: UIImage(named: "foresite-icon-1024.png"),
+                            backgroundColor: UIColor.black)) { (result, err) in
+                                //handle results and errors
+        }
+
+    }
+    
+    
     func initialize_categoryPicker(textfield: UITextField, options: UIPickerView){
         textfield.tintColor = .clear
         
@@ -328,5 +355,5 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         textfield.inputView = options
         textfield.inputAccessoryView = toolBar
     }
+    
 }
-
