@@ -37,6 +37,7 @@
 
 @property (nonatomic, strong) AWSCognitoIdentityUserPool * pool;
 @property (nonatomic, strong) NSString* sentTo;
+
 @property (nonatomic, strong) AWSFormTableCell *userNameRow;
 @property (nonatomic, strong) AWSFormTableCell *passwordRow;
 @property (nonatomic, strong) AWSFormTableCell *phoneNumberRow;

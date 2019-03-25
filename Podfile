@@ -10,6 +10,9 @@ target 'ForeSite' do
   pod 'AWSMobileClient', '~> 2.8.1'      # Required dependency
   pod 'AWSAuthUI', '~> 2.8.1'            # Optional dependency required to use drop-in UI
   pod 'AWSUserPoolsSignIn', '~> 2.8.1'   # Optional dependency required to use drop-in UI
+  pod 'Alamofire', '~> 5.0.0-beta.3'
+  pod 'Stripe'
+  pod 'SwiftyJSON', '~> 4.0'
   # Pods for ForeSite
 
   target 'ForeSiteTests' do

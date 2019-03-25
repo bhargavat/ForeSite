@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import AWSAppSync
+import Stripe
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Error initializing appsync client. \(error)")
         }
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_Vrl0JcX96VSEFb2lCwZe4p5e"
         // Override point for customization after application launch.
         return true
     }

@@ -21,6 +21,8 @@
 		044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CC21D8059D008DC137 /* AWSAppSync.framework */; };
 		044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CE21D80643008DC137 /* AWSAuthCore.framework */; };
 		04728BE6220BB95C00067283 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04728BE5220BB95C00067283 /* EventViewController.swift */; };
+		04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C415B2223DF9D70015D754 /* Alamofire.framework */; };
+		04C415B5223E00340015D754 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C415B4223E00340015D754 /* NetworkClient.swift */; };
 		04CB85D621DC68A900549DED /* AWSAuthUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D521DC68A900549DED /* AWSAuthUI.framework */; };
 		04CB85D821DC68B500549DED /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */; };
 		04CB85DA21DC68B500549DED /* AWSCognitoIdentityProviderASF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */; };
@@ -33,7 +35,9 @@
 		04CB85E821DC729100549DED /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E721DC729100549DED /* awsconfiguration.json */; };
 		04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E921DC8AC900549DED /* Images.xcassets */; };
 		04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */; };
+		0E23D205E7001C00D699EAAF /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
 		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
+		672799BE7427DB9EC46C9E7C /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */; };
 		87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A92DC2FC3E12C8727D95865 /* Pods_ForeSiteTests.framework */; };
 		EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C507CA72AE4097036E0C32 /* Pods_ForeSiteUITests.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +80,8 @@
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CE21D80643008DC137 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04728BE5220BB95C00067283 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		04C415B2223DF9D70015D754 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C415B4223E00340015D754 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		04CB85D521DC68A900549DED /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProviderASF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */,
 				04CB85D821DC68B500549DED /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				04CB85DA21DC68B500549DED /* AWSCognitoIdentityProviderASF.framework in Frameworks */,
 				04CB85DC21DC68B500549DED /* AWSMobileClient.framework in Frameworks */,
@@ -124,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87F4491F7818A87CA680B85B /* Pods_ForeSiteTests.framework in Frameworks */,
+				672799BE7427DB9EC46C9E7C /* Pods_ForeSiteTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF9B2E11CAF46A8DA38818C7 /* Pods_ForeSiteUITests.framework in Frameworks */,
+				0E23D205E7001C00D699EAAF /* Pods_ForeSiteUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +184,7 @@
 				04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */,
 				0428F86B220040A3001D75E7 /* CellData.swift */,
 				04728BE5220BB95C00067283 /* EventViewController.swift */,
+				04C415B4223E00340015D754 /* NetworkClient.swift */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -200,6 +210,7 @@
 		5619726DED16F8CF3A4DAF94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04C415B2223DF9D70015D754 /* Alamofire.framework */,
 				04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */,
 				04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */,
 				04CB85DB21DC68B500549DED /* AWSMobileClient.framework */,
@@ -382,8 +393,11 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSUserPoolsSignIn/AWSUserPoolsSignIn.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -397,8 +411,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSUserPoolsSignIn.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -482,6 +499,7 @@
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				0428F86C220040A3001D75E7 /* CellData.swift in Sources */,
+				04C415B5223E00340015D754 /* NetworkClient.swift in Sources */,
 				042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */,
 				04728BE6220BB95C00067283 /* EventViewController.swift in Sources */,
 			);
