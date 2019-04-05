@@ -13,6 +13,7 @@ target 'ForeSite' do
   pod 'Alamofire', '~> 5.0.0-beta.3'
   pod 'Stripe'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'TextFieldEffects'
   # Pods for ForeSite
 
   target 'ForeSiteTests' do
