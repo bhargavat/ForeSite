@@ -21,6 +21,9 @@
 		044534CD21D8059D008DC137 /* AWSAppSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CC21D8059D008DC137 /* AWSAppSync.framework */; };
 		044534CF21D80643008DC137 /* AWSAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044534CE21D80643008DC137 /* AWSAuthCore.framework */; };
 		04728BE6220BB95C00067283 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04728BE5220BB95C00067283 /* EventViewController.swift */; };
+		049AAF2322593B6500F7759F /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF2222593B6500F7759F /* AuthController.swift */; };
+		049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF242259DBDA00F7759F /* GlobalData.swift */; };
+		049AAF272259E30900F7759F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF262259E30900F7759F /* Extensions.swift */; };
 		04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C415B2223DF9D70015D754 /* Alamofire.framework */; };
 		04C415B5223E00340015D754 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C415B4223E00340015D754 /* NetworkClient.swift */; };
 		04CB85D621DC68A900549DED /* AWSAuthUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D521DC68A900549DED /* AWSAuthUI.framework */; };
@@ -80,6 +83,9 @@
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CE21D80643008DC137 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04728BE5220BB95C00067283 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		049AAF2222593B6500F7759F /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		049AAF242259DBDA00F7759F /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
+		049AAF262259E30900F7759F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04C415B2223DF9D70015D754 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C415B4223E00340015D754 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		04CB85D521DC68A900549DED /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +191,9 @@
 				0428F86B220040A3001D75E7 /* CellData.swift */,
 				04728BE5220BB95C00067283 /* EventViewController.swift */,
 				04C415B4223E00340015D754 /* NetworkClient.swift */,
+				049AAF2222593B6500F7759F /* AuthController.swift */,
+				049AAF242259DBDA00F7759F /* GlobalData.swift */,
+				049AAF262259E30900F7759F /* Extensions.swift */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -502,6 +511,9 @@
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				0428F86C220040A3001D75E7 /* CellData.swift in Sources */,
 				04C415B5223E00340015D754 /* NetworkClient.swift in Sources */,
+				049AAF272259E30900F7759F /* Extensions.swift in Sources */,
+				049AAF2322593B6500F7759F /* AuthController.swift in Sources */,
+				049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */,
 				042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */,
 				04728BE6220BB95C00067283 /* EventViewController.swift in Sources */,
 			);

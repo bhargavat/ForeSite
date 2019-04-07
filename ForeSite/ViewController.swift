@@ -142,15 +142,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         
         //Customize login screen displayed if user is not in logged in state
-        AWSMobileClient.sharedInstance()
-            .showSignIn(navigationController: self.navigationController!,
-                        signInUIOptions: SignInUIOptions(
-                            canCancel: false,
-                            logoImage: UIImage(named: "foresite-icon-1024.png"),
-                            backgroundColor: UIColor.black)) { (result, err) in
-                                //handle results and errors
-        }
-        
+//        AWSMobileClient.sharedInstance()
+//            .showSignIn(navigationController: self.navigationController!,
+//                        signInUIOptions: SignInUIOptions(
+//                            canCancel: false,
+//                            logoImage: UIImage(named: "foresite-icon-1024.png"),
+//                            backgroundColor: UIColor.black)) { (result, err) in
+//                                //handle results and errors
+//        }
+//
         sidemenuView.layer.shadowOpacity = 1
         sidemenuView.layer.shadowRadius = 6
         

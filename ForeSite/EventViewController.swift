@@ -35,14 +35,7 @@ class EventViewController: UIViewController {
         }
 //
         let parameters: Parameters = ["event_id": "E001"]
-//        let response_json: JSON = networkingClient.post_request(parameters: parameters,endpoint: "http://127.0.0.1:5000/foresite/getEventDetails")
-//        let eventDetails = response_json[0]
-//        let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
-//
-//        self.testHTTPLabel.text = str_location
-//        self.eventNameLabel.text = eventDetails["title"].string!
-//        self.eventDescriptionTextView.text = eventDetails["description"].string!
-        
+
         AF.request("http://127.0.0.1:5000/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
 
             do{
