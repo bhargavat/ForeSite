@@ -12,12 +12,14 @@
 // References:
 // https://peterwitham.com/swift-archives/how-to-use-a-uipickerview-as-input-for-a-uitextfield/
 import UIKit
-import AWSAppSync
-import AWSMobileClient
+//import AWSAppSync
+//import AWSMobileClient
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
-    var appSyncClient: AWSAppSyncClient?
+//    var appSyncClient: AWSAppSyncClient?
     
     var menuShowing = false
     var dragging = false
@@ -33,7 +35,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let categoryOptions = [String](arrayLiteral: "All", "Entertainment", "Food", "Music", "Tech")
     let sortOptions = [String](arrayLiteral: "Relevant", "Nearest", "Cheapest", "Soonest")
     
-    var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
+    lazy var sampleEvents = [event]()
+//    var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
     
     @IBOutlet var sideBarButtons: [UIButton]!
     
@@ -74,7 +77,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventTableViewCell
         
         let event = sampleEvents[indexPath.row]
-        
+        print(event)
         cell.eventTitle?.text = event.title
         cell.eventStart?.text = event.startDay + " • " + event.startTime
         cell.eventEnd?.text = event.endDay + " • " + event.endTime
@@ -130,33 +133,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.eventTableView.delegate = self
         self.eventTableView.dataSource = self
-        
-        self.navigationController!.navigationBar.isTranslucent = false
-        
-        AWSMobileClient.sharedInstance().initialize { (userState, error) in
-            if let userState = userState {
-                print("UserState: \(userState.rawValue)")
-            } else if let error = error {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-        
-        //Customize login screen displayed if user is not in logged in state
-//        AWSMobileClient.sharedInstance()
-//            .showSignIn(navigationController: self.navigationController!,
-//                        signInUIOptions: SignInUIOptions(
-//                            canCancel: false,
-//                            logoImage: UIImage(named: "foresite-icon-1024.png"),
-//                            backgroundColor: UIColor.black)) { (result, err) in
-//                                //handle results and errors
-//        }
-//
         sidemenuView.layer.shadowOpacity = 1
         sidemenuView.layer.shadowRadius = 6
         
         //SortField.layoutMargins
         self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
         self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
+        
+        self.fetchEvents()
+
     }
 
     //touch gesture event listener
@@ -224,7 +209,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if (menuShowing){
             leadingConstraint.constant = CGFloat(sideMenuWidth * -1)
             self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            //self.eventTableView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
             self.eventTableView.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.20,
                             animations:{
@@ -318,19 +303,35 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     @IBAction func SignOut(_ sender: Any) {
-        AWSMobileClient.sharedInstance().signOut()
-        //shows the sign in page if user is signedout
-        AWSMobileClient.sharedInstance()
-            .showSignIn(navigationController: self.navigationController!,
-                        signInUIOptions: SignInUIOptions(
-                            canCancel: false,
-                            logoImage: UIImage(named: "foresite-icon-1024.png"),
-                            backgroundColor: UIColor.black)) { (result, err) in
-                                //handle results and errors
-        }
-
+        username = "" //reset username that is logged in
+        performSegue(withIdentifier: "SignOutSegue", sender: self)
     }
     
+    func fetchEvents(){
+        var events = [event]()
+        
+        AF.request("http://127.0.0.1:5000/foresite/getEventList", method: .post, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            do{
+                let json = try JSON(data: response.data!)
+                //print(json)
+                print(json["results"])
+                if(json["response"] == "success"){
+                    if let fetched_events = json["results"].array{
+                        for c_event in fetched_events{
+                            let current_event = event(title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: "placeholder")
+
+                            self.sampleEvents.append(current_event)
+                        }
+                        self.eventTableView.reloadData()
+                    }
+                }
+            }catch{
+                print("ERROR: Failed to cast request to JSON format")
+            }
+        }
+//        var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
+    }
     
     func initialize_categoryPicker(textfield: UITextField, options: UIPickerView){
         textfield.tintColor = .clear
@@ -345,7 +346,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: "Done",style: .plain, target: self, action: #selector(self.doneClick))
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelClick))
         

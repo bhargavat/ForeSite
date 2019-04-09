@@ -19,8 +19,6 @@ class EventViewController: UIViewController {
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     @IBOutlet weak var eventNameLabel: UILabel!
     
-    
-    private let networkingClient = NetworkingClient()
     var event: event?
     let minTitleChars:Int = 23
     override func viewDidLoad() {
@@ -41,14 +39,18 @@ class EventViewController: UIViewController {
             do{
 
                 let json = try JSON(data: response.data!)
+                let eventDetails = json["results"]
                 print(json)
-                let eventDetails = json[0]
+                print(json["results"]["city"])
+//                if let dict = self.convertToDictionary(text: eventDetails!) {
+//                    print(dict["city"]!)
+//                }
                 let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
                 self.testHTTPLabel.text = str_location
                 self.eventNameLabel.text = eventDetails["title"].string!
                 self.eventDescriptionTextView.text = eventDetails["description"].string!
                 self.eventDescriptionTextView.isEditable = false
-                print("json:",json[0]["city"].string!)
+                //print("json:",json[0]["city"].string!)
             }catch{
                 print("ERROR: Failed to cast to JSON format")
             }
@@ -66,6 +68,18 @@ class EventViewController: UIViewController {
         }
         truncatedTitle += "..."
         return truncatedTitle
+    }
+    
+    //reference: https://stackoverflow.com/questions/29221586/swift-how-to-convert-string-to-dictionary
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     /*
     // MARK: - Navigation

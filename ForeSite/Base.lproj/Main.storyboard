@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVH-tT-55t">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="QTq-PG-PPP"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qLs-ld-k7K">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" focusStyle="custom" rowHeight="140" id="QKP-Bn-6Yw" customClass="EventTableViewCell" customModule="ForeSite" customModuleProvider="target">
@@ -224,6 +224,7 @@
                                             <action selector="SignOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="njb-Sj-m09"/>
                                             <action selector="flashButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yv6-8v-u7r"/>
                                             <action selector="openMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mqq-SV-B6A"/>
+                                            <segue destination="yKO-4O-XGd" kind="showDetail" identifier="SignOutSegue" id="dbG-fr-WCa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -516,7 +517,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1Za-Lz-M31" kind="popoverPresentation" popoverAnchorView="r7N-an-Q71" id="MWz-kw-7pP">
+                                    <segue destination="1Za-Lz-M31" kind="popoverPresentation" identifier="RegisterSegue" popoverAnchorView="r7N-an-Q71" id="MWz-kw-7pP">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -530,7 +531,7 @@
                                 <connections>
                                     <action selector="loginClicked:" destination="yKO-4O-XGd" eventType="touchUpInside" id="MvO-Ww-UbE"/>
                                     <action selector="loginClicked:" destination="TNk-os-jWY" eventType="touchUpInside" id="g6x-X3-v2z"/>
-                                    <segue destination="BYZ-38-t0r" kind="showDetail" identifier="EventListSegue" id="mqG-bx-HAS"/>
+                                    <segue destination="7Ro-Wp-8kM" kind="show" identifier="EventListSegue" id="M8S-Hv-ZKZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -586,7 +587,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yKO-4O-XGd" kind="showDetail" identifier="LoginSegue" id="01b-Ph-jST"/>
+                                    <segue destination="yKO-4O-XGd" kind="showDetail" identifier="DismissRegisterSegue" id="01b-Ph-jST"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="y0f-m8-DzY" customClass="HoshiTextField" customModule="TextFieldEffects">
@@ -773,6 +774,6 @@
         <image name="sidebar_menu_1x" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mqG-bx-HAS"/>
+        <segue reference="01b-Ph-jST"/>
     </inferredMetricsTieBreakers>
 </document>

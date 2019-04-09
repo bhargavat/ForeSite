@@ -36,22 +36,19 @@ class AuthController: UIViewController{
         let passwordInput = passwordField.text
         
         if (usernameInput != "" && passwordInput != ""){
-            let parameters: Parameters = ["user_name":usernameInput!, "password": passwordInput!]
+            let parameters: Parameters = ["user_name":usernameInput!, "password": passwordInput!.md5()]
             
             AF.request("http://127.0.0.1:5000/foresite/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                 
                 do{
                     let json = try JSON(data: response.data!)
                     if(json["response"] == "success"){
+                        print("SUCCESS")
                         username = usernameInput!
+
                         self.performSegue(withIdentifier: "EventListSegue", sender: self)
-//                        let alertController = UIAlertController(title: "Success", message:
-//                            "Login is successful", preferredStyle: .alert)
-//                        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-//
-//                        self.present(alertController, animated: true, completion: nil)
                     }else{
-                        let alertController = UIAlertController(title: "Fail", message:
+                        let alertController = UIAlertController(title: "Login Failed", message:
                             "Incorrect login credentials", preferredStyle: .alert)
                         alertController.addAction(UIAlertAction(title: "OK", style: .default))
                         
@@ -70,6 +67,14 @@ class AuthController: UIViewController{
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if(username != "" || identifier == "RegisterSegue"
+            || identifier == "DismissRegisterSegue"){
+            return true
+        }
+        return false
+    }
+    
     @IBAction func registerNewUser(_ sender: Any) {
         print(my_string)
         if(isvalidRegistrationInput() == false){
@@ -84,7 +89,7 @@ class AuthController: UIViewController{
                  "email": emailField.text!,
                  "phone_number": phoneField.text!,
                  "user_name": r_usernameField.text!,
-                 "password": r_passwordField.text!]
+                 "password": r_passwordField.text!.md5()]
             
             if(isvalidRegistrationInput() == true){
                 AF.request("http://127.0.0.1:5000/foresite/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
@@ -96,10 +101,13 @@ class AuthController: UIViewController{
                             
                             let alertController = UIAlertController(title: "Success", message:
                                 "Registration is successful", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default))
                             
                             self.present(alertController, animated: true, completion: {
-                                self.performSegue(withIdentifier: "LoginSegue", sender: self)
+                                let when = DispatchTime.now() + 4
+                                DispatchQueue.main.asyncAfter(deadline: when){
+                                    self.performSegue(withIdentifier: "DismissRegisterSegue", sender: self)
+                                }
+
                             })
                             
                             

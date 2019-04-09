@@ -25,7 +25,6 @@
 		049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF242259DBDA00F7759F /* GlobalData.swift */; };
 		049AAF272259E30900F7759F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF262259E30900F7759F /* Extensions.swift */; };
 		04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C415B2223DF9D70015D754 /* Alamofire.framework */; };
-		04C415B5223E00340015D754 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C415B4223E00340015D754 /* NetworkClient.swift */; };
 		04CB85D621DC68A900549DED /* AWSAuthUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D521DC68A900549DED /* AWSAuthUI.framework */; };
 		04CB85D821DC68B500549DED /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */; };
 		04CB85DA21DC68B500549DED /* AWSCognitoIdentityProviderASF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */; };
@@ -87,7 +86,6 @@
 		049AAF242259DBDA00F7759F /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		049AAF262259E30900F7759F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04C415B2223DF9D70015D754 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		04C415B4223E00340015D754 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		04CB85D521DC68A900549DED /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D921DC68B500549DED /* AWSCognitoIdentityProviderASF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProviderASF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,7 +188,6 @@
 				04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */,
 				0428F86B220040A3001D75E7 /* CellData.swift */,
 				04728BE5220BB95C00067283 /* EventViewController.swift */,
-				04C415B4223E00340015D754 /* NetworkClient.swift */,
 				049AAF2222593B6500F7759F /* AuthController.swift */,
 				049AAF242259DBDA00F7759F /* GlobalData.swift */,
 				049AAF262259E30900F7759F /* Extensions.swift */,
@@ -510,7 +507,6 @@
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				0428F86C220040A3001D75E7 /* CellData.swift in Sources */,
-				04C415B5223E00340015D754 /* NetworkClient.swift in Sources */,
 				049AAF272259E30900F7759F /* Extensions.swift in Sources */,
 				049AAF2322593B6500F7759F /* AuthController.swift in Sources */,
 				049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */,
