@@ -164,11 +164,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let touchX = (touchPoint?.x)!
             //print("leading: ",leadingConstraint.constant)
             if(touchX < 300 && leadingConstraint.constant <= 0){
-                //print("moved: ", touchX)
                 let newPos = -1*(initialTouchPosition - touchX)
                 if (newPos <= 0){
                     leadingConstraint.constant = -1*(initialTouchPosition - touchX)
-                    //print("position: ",leadingConstraint.constant)
                 }
             }
         }
@@ -190,8 +188,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             if let touch = touches.first {
                 let position = touch.location(in: view)
                 initialTouchPosition = position.x
-                //print("posX: " , position.x)
-                //                print(sideMenuWidth)
                 if(Int(position.x) > sideMenuWidth){
                     openMenu((Any).self)
                 }
@@ -216,11 +212,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                             self.view.layoutIfNeeded()
             })
             self.eventToolbar.isUserInteractionEnabled = true
-            //self.eventToolbar.isHidden = false
         }else{
             leadingConstraint.constant = 0
-            //self.view.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
-            //self.eventTableView.backgroundColor = #colorLiteral(red: 0.5218608596, green: 0.4965139438, blue: 0.5038792822, alpha: 0.9030661387)
             self.eventTableView.isUserInteractionEnabled = false
             
             UIView.animate(withDuration: 0.3,
@@ -308,18 +301,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func fetchEvents(){
-        var events = [event]()
-        
         AF.request("http://127.0.0.1:5000/foresite/getEventList", method: .post, encoding: JSONEncoding.default).responseJSON{ response in
             
             do{
                 let json = try JSON(data: response.data!)
                 //print(json)
-                print(json["results"])
+                //print(json["results"])
                 if(json["response"] == "success"){
                     if let fetched_events = json["results"].array{
                         for c_event in fetched_events{
-                            let current_event = event(title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: "placeholder")
+                            print(c_event)
+                            let current_event = event(id: c_event["event_id"].string!, title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: "placeholder")
 
                             self.sampleEvents.append(current_event)
                         }

@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 struct event {
+    var id: String
     var title : String
     var startDay : String
     var startTime : String

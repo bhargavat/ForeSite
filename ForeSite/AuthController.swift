@@ -12,9 +12,14 @@ import Alamofire
 import TextFieldEffects
 import SwiftyJSON
 
-class AuthController: UIViewController{
+class AuthController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var signInBtn: UIButton!
     
+    @IBOutlet var loginView: UIView!
+    @IBOutlet var registerView: UIView!
+    
+    var tapGesture = UITapGestureRecognizer()
+    var passHidden = true
     //login fields
     @IBOutlet weak var usernameField: HoshiTextField!
     @IBOutlet weak var passwordField: HoshiTextField!
@@ -28,8 +33,24 @@ class AuthController: UIViewController{
     @IBOutlet weak var r_passwordField: HoshiTextField!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        switch self.restorationIdentifier {
+        case "loginView":
+            self.usernameField.delegate = self
+            self.passwordField.delegate = self
+        case "registerView":
+            self.firstnameField.delegate = self
+            self.lastnameField.delegate = self
+            self.emailField.delegate = self
+            self.phoneField.delegate = self
+            self.r_usernameField.delegate = self
+            self.r_passwordField.delegate = self
+        default:
+            break
+        }
+        self.hideKeyboard()
     }
+    
     
     @IBAction func loginClicked(_ sender: UIButton) {
         let usernameInput = usernameField.text
@@ -43,7 +64,6 @@ class AuthController: UIViewController{
                 do{
                     let json = try JSON(data: response.data!)
                     if(json["response"] == "success"){
-                        print("SUCCESS")
                         username = usernameInput!
 
                         self.performSegue(withIdentifier: "EventListSegue", sender: self)
@@ -66,6 +86,23 @@ class AuthController: UIViewController{
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    
+    @IBAction func hidePassword(_ sender: Any) {
+        if(!passHidden){ //hide password
+            r_passwordField.isSecureTextEntry = true
+            passHidden = true
+        }else if(r_passwordField.text != ""){
+            r_passwordField.isSecureTextEntry = false
+            passHidden = false
+        }
+    }
+    
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if(username != "" || identifier == "RegisterSegue"
