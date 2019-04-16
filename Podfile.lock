@@ -1,40 +1,11 @@
 PODS:
   - Alamofire (5.0.0-beta.3)
-  - AWSAppSync (2.8.0):
-    - AWSCore (~> 2.8.0)
-    - ReachabilitySwift (~> 4.3.0)
-    - SQLite.swift (= 0.11.5)
-  - AWSAuthCore (2.8.1):
-    - AWSCore (= 2.8.1)
-  - AWSAuthUI (2.8.1):
-    - AWSAuthCore (= 2.8.1)
-    - AWSCore (= 2.8.1)
-  - AWSCognitoIdentityProvider (2.8.1):
-    - AWSCognitoIdentityProviderASF (= 1.0.1)
-    - AWSCore (= 2.8.1)
-  - AWSCognitoIdentityProviderASF (1.0.1)
-  - AWSCore (2.8.1)
-  - AWSMobileClient (2.8.1):
-    - AWSAuthCore (= 2.8.1)
-    - AWSCognitoIdentityProvider (= 2.8.1)
-  - AWSUserPoolsSignIn (2.8.1):
-    - AWSAuthCore (= 2.8.1)
-    - AWSCognitoIdentityProvider (= 2.8.1)
-  - ReachabilitySwift (4.3.0)
-  - SQLite.swift (0.11.5):
-    - SQLite.swift/standard (= 0.11.5)
-  - SQLite.swift/standard (0.11.5)
   - Stripe (14.0.0)
   - SwiftyJSON (4.2.0)
   - TextFieldEffects (1.5.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.3)
-  - AWSAppSync (~> 2.8.0)
-  - AWSAuthUI (~> 2.8.1)
-  - AWSCore (~> 2.8.1)
-  - AWSMobileClient (~> 2.8.1)
-  - AWSUserPoolsSignIn (~> 2.8.1)
   - Stripe
   - SwiftyJSON (~> 4.0)
   - TextFieldEffects
@@ -42,36 +13,16 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - AWSAppSync
-    - AWSAuthCore
-    - AWSAuthUI
-    - AWSCognitoIdentityProvider
-    - AWSCognitoIdentityProviderASF
-    - AWSCore
-    - AWSMobileClient
-    - AWSUserPoolsSignIn
-    - ReachabilitySwift
-    - SQLite.swift
     - Stripe
     - SwiftyJSON
     - TextFieldEffects
 
 SPEC CHECKSUMS:
   Alamofire: 50d6fa7e8cbe7f84559e86ab641ffd029db655f8
-  AWSAppSync: c00d00aed7d0491aa0ccc8f6f4d23c194d96c1c8
-  AWSAuthCore: 4c1e754823ea60fc6f8f1716da5bda598a252829
-  AWSAuthUI: 1127c96fcf919ab2a88196f133b5fc8145eb490c
-  AWSCognitoIdentityProvider: 31885b28f77955ed30b29b57bc658f170bdc44da
-  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
-  AWSCore: f17db38a5f8bceb217a19d58d8755bbb6f5ddb3c
-  AWSMobileClient: 1b617ea32f91d0d9922679581eb9aebaea94801e
-  AWSUserPoolsSignIn: 9ca9ff3f904786c1ff9b23dd6a49f0a101c5c015
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: bc4e96109a7c79de22d0b641a3e51145dd14fe8b
+PODFILE CHECKSUM: 9da03ff19f6ab34ccddd1145f0649253ed69f4bd
 
 COCOAPODS: 1.5.3

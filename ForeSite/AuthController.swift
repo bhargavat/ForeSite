@@ -14,12 +14,13 @@ import SwiftyJSON
 
 class AuthController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var signInBtn: UIButton!
-    
     @IBOutlet var loginView: UIView!
     @IBOutlet var registerView: UIView!
     
     var tapGesture = UITapGestureRecognizer()
     var passHidden = true
+    var invalidRegistrationFields:[String] = []
+    
     //login fields
     @IBOutlet weak var usernameField: HoshiTextField!
     @IBOutlet weak var passwordField: HoshiTextField!
@@ -70,7 +71,11 @@ class AuthController: UIViewController, UITextFieldDelegate{
                     }else{
                         let alertController = UIAlertController(title: "Login Failed", message:
                             "Incorrect login credentials", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default){
+                                UIAlertAction in
+                                self.usernameField.text = ""
+                                self.passwordField.text = ""
+                            })
                         
                         self.present(alertController, animated: true, completion: nil)
                     }
@@ -115,8 +120,9 @@ class AuthController: UIViewController, UITextFieldDelegate{
     @IBAction func registerNewUser(_ sender: Any) {
         print(my_string)
         if(isvalidRegistrationInput() == false){
+            addWarningToFields()
             let alertController = UIAlertController(title: "Registration Failed", message:
-                "Invalid registration data", preferredStyle: .alert)
+                "Please fix the highlighted fields", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alertController, animated: true, completion: nil)
         }else{
@@ -165,21 +171,89 @@ class AuthController: UIViewController, UITextFieldDelegate{
     }
     
     func isvalidRegistrationInput() -> Bool{
-        if(firstnameField.text! == "" || lastnameField.text! == ""){
-            return false
+        invalidRegistrationFields.removeAll()
+        if(firstnameField.text! == ""){
+            invalidRegistrationFields.append("First Name")
+        }
+        if(lastnameField.text! == ""){
+            invalidRegistrationFields.append("Last Name")
         }
         if(emailField.text!.isEmail == false){
-            return false
+            invalidRegistrationFields.append("Email")
         }
         if(phoneField.text!.isPhoneNumber == false){
-            return false
+            invalidRegistrationFields.append("Phone Number")
         }
-        if(r_usernameField.text!.count < 2){
-            return false
+        if(r_usernameField.text!.count < 3){
+            invalidRegistrationFields.append("Username")
+            }
+            if(r_passwordField.text!.count < 3){
+                invalidRegistrationFields.append("Password")
+            }
+        
+            if(invalidRegistrationFields.count > 0){
+                return false
+            }
+            return true
         }
-        if(r_passwordField.text!.count < 2){
-            return false
+    
+        func resetFieldColors(){
+            firstnameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            firstnameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            firstnameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+ 
+            lastnameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            lastnameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            lastnameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+
+            emailField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            emailField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            emailField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+
+            phoneField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            phoneField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            phoneField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+
+            r_usernameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            r_usernameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            r_usernameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+
+            r_passwordField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            r_passwordField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            r_passwordField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
         }
-        return true
+    
+        func addWarningToFields() {
+            resetFieldColors()
+            for field in invalidRegistrationFields {
+                switch field {
+                case "First Name":
+                    firstnameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    firstnameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    firstnameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                case "Last Name":
+                    lastnameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    lastnameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    lastnameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                case "Email":
+                    emailField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    emailField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    emailField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                case "Phone Number":
+                    phoneField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    phoneField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    phoneField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                case "Username":
+                    r_usernameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_usernameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_usernameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                case "Password":
+                    r_passwordField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_passwordField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_passwordField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                default:
+                    return
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ struct event {
     var endTime : String
     var price : String
     var location : String
-    var image : String
+    var image : UIImage
 }
 
 class EventTableViewCell: UITableViewCell{

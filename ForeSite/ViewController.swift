@@ -12,15 +12,11 @@
 // References:
 // https://peterwitham.com/swift-archives/how-to-use-a-uipickerview-as-input-for-a-uitextfield/
 import UIKit
-//import AWSAppSync
-//import AWSMobileClient
 import Alamofire
 import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
-//    var appSyncClient: AWSAppSyncClient?
-    
     var menuShowing = false
     var dragging = false
     
@@ -36,7 +32,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let sortOptions = [String](arrayLiteral: "Relevant", "Nearest", "Cheapest", "Soonest")
     
     lazy var sampleEvents = [event]()
-//    var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
+    var refreshControl: UIRefreshControl? = nil
     
     @IBOutlet var sideBarButtons: [UIButton]!
     
@@ -58,12 +54,34 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var CategoryField: UITextField!
     @IBOutlet weak var SortField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.eventTableView.delegate = self
+        self.eventTableView.dataSource = self
+        sidemenuView.layer.shadowOpacity = 1
+        sidemenuView.layer.shadowRadius = 6
+        
+        //SortField.layoutMargins
+        self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
+        self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
+        
+        self.fetchEvents()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:  #selector(self.fetchEvents), for: .valueChanged)
+        self.refreshControl = refreshControl
+        eventTableView.addSubview(refreshControl)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sampleEvents.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(categoryPicker.isHidden == false || sortPicker.isHidden == false){
+            cancelClick()
+        }
         performSegue(withIdentifier: "EventDetailSegue", sender: self)
     }
     
@@ -72,7 +90,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             destination.event = sampleEvents[(eventTableView.indexPathForSelectedRow?.row)!]
         }
     }
-    //Generates the table cells
+    
+    //Generates the table cells when reload data is called
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventTableViewCell
         
@@ -83,7 +102,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         cell.eventEnd?.text = event.endDay + " • " + event.endTime
         cell.eventPrice?.text = event.price
         cell.eventLocation?.text = event.location
-        cell.eventImage?.image = UIImage(named: event.image)
+        cell.eventImage?.image = event.image
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell
@@ -126,22 +145,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             SortField.textColor = selectTextColor
             tempSort = sortOptions[row]
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.eventTableView.delegate = self
-        self.eventTableView.dataSource = self
-        sidemenuView.layer.shadowOpacity = 1
-        sidemenuView.layer.shadowRadius = 6
-        
-        //SortField.layoutMargins
-        self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
-        self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
-        
-        self.fetchEvents()
-
     }
 
     //touch gesture event listener
@@ -300,7 +303,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         performSegue(withIdentifier: "SignOutSegue", sender: self)
     }
     
-    func fetchEvents(){
+    @objc func fetchEvents(){
+        self.sampleEvents = []
         AF.request("http://127.0.0.1:5000/foresite/getEventList", method: .post, encoding: JSONEncoding.default).responseJSON{ response in
             
             do{
@@ -311,18 +315,36 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     if let fetched_events = json["results"].array{
                         for c_event in fetched_events{
                             print(c_event)
-                            let current_event = event(id: c_event["event_id"].string!, title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: "placeholder")
+                            var imageRef = "placeholder"
+                            var imageData: Data? = nil
+                            
+                            print(c_event["thumbnail_icon"].exists())
+                            
+                            if(c_event["thumbnail_icon"].string != nil){
+                                imageRef = c_event["thumbnail_icon"].string!
+                                let imageUrl = URL(string: imageRef)
+                                if((imageUrl) != nil){
+                                    imageData = try? Data(contentsOf: imageUrl!)
+                                }
+                            }
+
+                            var image: UIImage = UIImage(named: "placeholder")!
+
+                            if(imageRef != "placeholder" && imageData != nil){
+                                image = UIImage(data: imageData!)!
+                            }
+                            let current_event = event(id: c_event["event_id"].string!, title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: image)
 
                             self.sampleEvents.append(current_event)
                         }
                         self.eventTableView.reloadData()
+                        self.refreshControl?.endRefreshing()
                     }
                 }
             }catch{
                 print("ERROR: Failed to cast request to JSON format")
             }
         }
-//        var sampleEvents = [event(title:"1st Annual iOS Machine Learning Hackathon Extravaganza", startDay: "January 31, 2019", startTime:"12:00 PM", endDay: "February 2, 2019", endTime: "11:20 PM", price:"$69.99+", location: "SCU Locatelli Student Activity Center", image: "machine-learning"), event(title:"Spring Career Fair", startDay: "February 28, 2019", startTime:"12:00 PM", endDay: "February 28, 2019", endTime: "5:00 PM", price:"FREE", location: "San Jose Marriott Hotel", image: "career-fair")]
     }
     
     func initialize_categoryPicker(textfield: UITextField, options: UIPickerView){

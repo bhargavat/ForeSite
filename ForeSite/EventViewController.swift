@@ -12,12 +12,14 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+//Event Details controller
 class EventViewController: UIViewController {
     
     @IBOutlet weak var testHTTPLabel: UILabel!
-    
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     @IBOutlet weak var eventNameLabel: UILabel!
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     var event: event?
     let minTitleChars:Int = 23
@@ -37,14 +39,25 @@ class EventViewController: UIViewController {
         AF.request("http://127.0.0.1:5000/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
 
             do{
-
+                
                 let json = try JSON(data: response.data!)
                 let eventDetails = json["results"]
-                print(json)
-                print(json["results"]["city"])
-//                if let dict = self.convertToDictionary(text: eventDetails!) {
-//                    print(dict["city"]!)
-//                }
+                
+                var imageRef = "placeholder"
+                var imageData: Data? = nil
+                //print(c_event["thumbnail_icon"].exists())
+                self.imageView.image = UIImage(named: "placeholder")
+                if(eventDetails["thumbnail_icon"].string != nil){
+                    imageRef = eventDetails["thumbnail_icon"].string!
+                    let imageUrl = URL(string: imageRef)
+                    if((imageUrl) != nil){
+                        imageData = try? Data(contentsOf: imageUrl!)
+                        if(imageData != nil){
+                            self.imageView.image = UIImage(data: imageData!)
+                        }
+                    }
+                }
+                
                 let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
                 self.testHTTPLabel.text = str_location
                 self.eventNameLabel.text = eventDetails["title"].string!
