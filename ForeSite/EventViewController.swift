@@ -18,10 +18,12 @@ class EventViewController: UIViewController {
     @IBOutlet weak var testHTTPLabel: UILabel!
     @IBOutlet weak var eventDescriptionTextView: UITextView!
     @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var eventTimeLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
     
     var event: event?
+    var survey_questions: JSON?
     let minTitleChars:Int = 23
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +61,16 @@ class EventViewController: UIViewController {
                 }
                 
                 let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
+                
+                let eventTimeLabelText: String = "From: " + self.reformatDate(dateString: eventDetails["start_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " +  self.reformatDate(dateString: eventDetails["start_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a") + "\n" + "To: " + self.reformatDate(dateString: eventDetails["end_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + self.reformatDate(dateString: eventDetails["end_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a")
+                
+                self.eventTimeLabel.text = eventTimeLabelText
                 self.testHTTPLabel.text = str_location
                 self.eventNameLabel.text = eventDetails["title"].string!
                 self.eventDescriptionTextView.text = eventDetails["description"].string!
                 self.eventDescriptionTextView.isEditable = false
-                //print("json:",json[0]["city"].string!)
+                
+                self.survey_questions = JSON(eventDetails["survey_questions"])
             }catch{
                 print("ERROR: Failed to cast to JSON format")
             }
@@ -72,6 +79,21 @@ class EventViewController: UIViewController {
             print("Error: \(String(describing: response.error))")
         }
         // Do any additional setup after loading the view.
+    }
+    
+    func reformatDate(dateString: String, fromFormat:String, toFormat:String) -> String {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = fromFormat
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = toFormat
+        
+        if let date = dateFormatterGet.date(from: dateString) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+            return dateString
+        }
     }
     
     func getTruncatedTitle(str:String) -> String{
@@ -94,14 +116,14 @@ class EventViewController: UIViewController {
         }
         return nil
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "eventCheckoutSegue" {
+            if let destination = segue.destination as? CheckoutController {
+                destination.checkout_event = event
+                destination.survey_questions = survey_questions!
+            }
+        }
     }
-    */
 
 }

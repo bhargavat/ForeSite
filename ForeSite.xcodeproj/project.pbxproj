@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AFA96227A10EF00348AE2 /* SurveyController.swift */; };
+		041AFA9A2284E79500348AE2 /* MultiChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041AFA992284E79500348AE2 /* MultiChoiceCell.xib */; };
+		041AFA9C2284F68100348AE2 /* FreeResponseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041AFA9B2284F68100348AE2 /* FreeResponseCell.xib */; };
+		041AFA9E22856C6A00348AE2 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041AFA9D22856C6A00348AE2 /* SimpleTableCell.xib */; };
 		0428F86C220040A3001D75E7 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0428F86B220040A3001D75E7 /* CellData.swift */; };
 		042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
 		042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4A21BDAA1800E02F77 /* ViewController.swift */; };
@@ -22,10 +26,12 @@
 		049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF242259DBDA00F7759F /* GlobalData.swift */; };
 		049AAF272259E30900F7759F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF262259E30900F7759F /* Extensions.swift */; };
 		04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B30B572265BC3D00A78C84 /* RoundedButton.swift */; };
+		04B30B5B226795C100A78C84 /* CheckoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B30B5A226795C100A78C84 /* CheckoutController.swift */; };
 		04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C415B2223DF9D70015D754 /* Alamofire.framework */; };
 		04CB85E021DC68B500549DED /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */; };
 		04CB85E221DC68B500549DED /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
 		04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E921DC8AC900549DED /* Images.xcassets */; };
+		04F79FFE228742A3008EFF4D /* SingleChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */; };
 		04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */; };
 		0E23D205E7001C00D699EAAF /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
 		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
@@ -53,6 +59,10 @@
 
 /* Begin PBXFileReference section */
 		035A34D632A78D837C27543E /* Pods-ForeSite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.debug.xcconfig"; sourceTree = "<group>"; };
+		041AFA96227A10EF00348AE2 /* SurveyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyController.swift; sourceTree = SOURCE_ROOT; };
+		041AFA992284E79500348AE2 /* MultiChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiChoiceCell.xib; sourceTree = "<group>"; };
+		041AFA9B2284F68100348AE2 /* FreeResponseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeResponseCell.xib; sourceTree = "<group>"; };
+		041AFA9D22856C6A00348AE2 /* SimpleTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableCell.xib; sourceTree = "<group>"; };
 		0428F86B220040A3001D75E7 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		042B8A4521BDAA1800E02F77 /* ForeSite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForeSite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A4821BDAA1800E02F77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +86,7 @@
 		049AAF242259DBDA00F7759F /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		049AAF262259E30900F7759F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04B30B572265BC3D00A78C84 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		04B30B5A226795C100A78C84 /* CheckoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutController.swift; sourceTree = "<group>"; };
 		04C415B2223DF9D70015D754 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D521DC68A900549DED /* AWSAuthUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85D721DC68B500549DED /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCognitoIdentityProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +98,7 @@
 		04CB85E321DC68B500549DED /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85E521DC68B500549DED /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB85E921DC8AC900549DED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleChoiceCell.xib; sourceTree = "<group>"; };
 		04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +143,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041AFA982284E73C00348AE2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				041AFA992284E79500348AE2 /* MultiChoiceCell.xib */,
+				041AFA9B2284F68100348AE2 /* FreeResponseCell.xib */,
+				041AFA9D22856C6A00348AE2 /* SimpleTableCell.xib */,
+				04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		042B8A3C21BDAA1800E02F77 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +179,7 @@
 		042B8A4721BDAA1800E02F77 /* ForeSite */ = {
 			isa = PBXGroup;
 			children = (
+				041AFA982284E73C00348AE2 /* Cells */,
 				04B30B592265BC7300A78C84 /* Classes */,
 				042B8A4821BDAA1800E02F77 /* AppDelegate.swift */,
 				042B8A4A21BDAA1800E02F77 /* ViewController.swift */,
@@ -171,6 +195,8 @@
 				049AAF2222593B6500F7759F /* AuthController.swift */,
 				049AAF242259DBDA00F7759F /* GlobalData.swift */,
 				049AAF262259E30900F7759F /* Extensions.swift */,
+				04B30B5A226795C100A78C84 /* CheckoutController.swift */,
+				041AFA96227A10EF00348AE2 /* SurveyController.swift */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -345,6 +371,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041AFA9E22856C6A00348AE2 /* SimpleTableCell.xib in Resources */,
+				041AFA9C2284F68100348AE2 /* FreeResponseCell.xib in Resources */,
+				04F79FFE228742A3008EFF4D /* SingleChoiceCell.xib in Resources */,
+				041AFA9A2284E79500348AE2 /* MultiChoiceCell.xib in Resources */,
 				04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */,
 				042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */,
 				042B8A5321BDAA1900E02F77 /* Assets.xcassets in Resources */,
@@ -473,11 +503,13 @@
 				042B8A5121BDAA1800E02F77 /* ForeSite.xcdatamodeld in Sources */,
 				04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */,
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
+				041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */,
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				0428F86C220040A3001D75E7 /* CellData.swift in Sources */,
 				049AAF272259E30900F7759F /* Extensions.swift in Sources */,
 				049AAF2322593B6500F7759F /* AuthController.swift in Sources */,
 				049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */,
+				04B30B5B226795C100A78C84 /* CheckoutController.swift in Sources */,
 				042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */,
 				04728BE6220BB95C00067283 /* EventViewController.swift in Sources */,
 			);

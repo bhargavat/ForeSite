@@ -1,14 +1,11 @@
 //
 //  ViewController.swift
+//  
 //  ForeSite
 //
 //  Created by Bhargava on 12/9/18.
 //  Copyright © 2018 Bhargava. All rights reserved.
 //
-// GraphQL endpoint: https://z6iwdgs6kvaydovv2vxjndmady.appsync-api.us-west-2.amazonaws.com/graphql
-// cognitobd71c0bf_userpool_bd71c0bf
-// https://aws-amplify.github.io/docs/ios/authentication
-// GraphQL API KEY: da2-mtmrgffztvaktohykfzsib6icy
 // References:
 // https://peterwitham.com/swift-archives/how-to-use-a-uipickerview-as-input-for-a-uitextfield/
 import UIKit
@@ -66,8 +63,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         self.initialize_categoryPicker(textfield: self.CategoryField, options: self.categoryPicker)
         self.initialize_categoryPicker(textfield: self.SortField, options: self.sortPicker)
         
+        
         self.fetchEvents()
         
+        //swipe down to refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:  #selector(self.fetchEvents), for: .valueChanged)
         self.refreshControl = refreshControl
@@ -78,6 +77,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         return sampleEvents.count
     }
     
+    //performs segue when table cell clicked
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(categoryPicker.isHidden == false || sortPicker.isHidden == false){
             cancelClick()
@@ -98,10 +98,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let event = sampleEvents[indexPath.row]
         print(event)
         cell.eventTitle?.text = event.title
-        cell.eventStart?.text = event.startDay + " • " + event.startTime
-        cell.eventEnd?.text = event.endDay + " • " + event.endTime
-        cell.eventPrice?.text = event.price
+        
+        cell.eventStart?.text = event.startDay.reformatDate(fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " • " + event.startTime.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
+        cell.eventEnd?.text = event.endDay.reformatDate(fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " • " + event.endTime.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
+        cell.eventPrice?.text = "$"+(Double(event.price)!/100.0).dollarRound() + "+"
         cell.eventLocation?.text = event.location
+        
         cell.eventImage?.image = event.image
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         
@@ -315,6 +317,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     if let fetched_events = json["results"].array{
                         for c_event in fetched_events{
                             print(c_event)
+                            print(c_event["survey_questions"])
                             var imageRef = "placeholder"
                             var imageData: Data? = nil
                             
@@ -333,8 +336,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                             if(imageRef != "placeholder" && imageData != nil){
                                 image = UIImage(data: imageData!)!
                             }
-                            let current_event = event(id: c_event["event_id"].string!, title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: image)
-
+                            let current_event = event(id: c_event["event_id"].string!, title: c_event["title"].string!, startDay: c_event["start_date"].string!, startTime: c_event["start_time"].string!, endDay: c_event["end_date"].string!, endTime: c_event["end_time"].string!, price: c_event["subtotal_price"].rawString()!, location: c_event["street"].string!, image: image, add_ons: c_event["add_ons"].arrayObject!)
+                                
                             self.sampleEvents.append(current_event)
                         }
                         self.eventTableView.reloadData()

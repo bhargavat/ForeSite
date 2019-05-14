@@ -17,14 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //var appSyncClient: AWSAppSyncClient?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        do {
-//            let databaseURL = URL(fileURLWithPath:NSTemporaryDirectory()).appendingPathComponent("database_name")
-//            //AppSync configuration & client initialization
-//            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncClientInfo: AWSAppSyncClientInfo(),databaseURL: databaseURL)
-//            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
-//        } catch {
-//            print("Error initializing appsync client. \(error)")
-//        }
+
 //        STPPaymentConfiguration.shared().publishableKey = "pk_test_Vrl0JcX96VSEFb2lCwZe4p5e"
         // Override point for customization after application launch.
         return true

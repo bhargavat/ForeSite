@@ -62,25 +62,32 @@ class AuthController: UIViewController, UITextFieldDelegate{
             
             AF.request("http://127.0.0.1:5000/foresite/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                 
-                do{
-                    let json = try JSON(data: response.data!)
-                    if(json["response"] == "success"){
-                        username = usernameInput!
+                if (response.data != nil){
+                    do{
+                        let json = try JSON(data: response.data!)
+                        if(json["response"] == "success"){
+                            username = usernameInput!
 
-                        self.performSegue(withIdentifier: "EventListSegue", sender: self)
-                    }else{
-                        let alertController = UIAlertController(title: "Login Failed", message:
-                            "Incorrect login credentials", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default){
-                                UIAlertAction in
-                                self.usernameField.text = ""
-                                self.passwordField.text = ""
-                            })
-                        
-                        self.present(alertController, animated: true, completion: nil)
+                            self.performSegue(withIdentifier: "EventListSegue", sender: self)
+                        }else{
+                            let alertController = UIAlertController(title: "Login Failed", message:
+                                "Incorrect login credentials", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "OK", style: .default){
+                                    UIAlertAction in
+                                    self.usernameField.text = ""
+                                    self.passwordField.text = ""
+                                })
+                            
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }catch{
+                        print("ERROR: Failed to cast request to JSON format")
                     }
-                }catch{
-                    print("ERROR: Failed to cast request to JSON format")
+                }else{
+                    let alertController = UIAlertController(title: "Server Unavailable", message:
+                        "Please try again", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alertController, animated: true, completion: nil)
                 }
             }
         }else{
@@ -198,59 +205,64 @@ class AuthController: UIViewController, UITextFieldDelegate{
         }
     
         func resetFieldColors(){
-            firstnameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            firstnameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            firstnameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            let placeholderColor = #colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.9568627451, alpha: 1)
+            let activeColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
+            let inactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            
+            firstnameField.placeholderColor = placeholderColor
+            firstnameField.borderActiveColor = activeColor
+            firstnameField.borderInactiveColor = inactiveColor
  
-            lastnameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            lastnameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            lastnameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            lastnameField.placeholderColor = placeholderColor
+            lastnameField.borderActiveColor = activeColor
+            lastnameField.borderInactiveColor = inactiveColor
 
-            emailField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            emailField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            emailField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            emailField.placeholderColor = placeholderColor
+            emailField.borderActiveColor = activeColor
+            emailField.borderInactiveColor = inactiveColor
 
-            phoneField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            phoneField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            phoneField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            phoneField.placeholderColor = placeholderColor
+            phoneField.borderActiveColor = activeColor
+            phoneField.borderInactiveColor = inactiveColor
 
-            r_usernameField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            r_usernameField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            r_usernameField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            r_usernameField.placeholderColor = placeholderColor
+            r_usernameField.borderActiveColor = activeColor
+            r_usernameField.borderInactiveColor = inactiveColor
 
-            r_passwordField.placeholderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            r_passwordField.borderActiveColor = #colorLiteral(red: 0.03833928332, green: 0.3575392365, blue: 0.3587242961, alpha: 1)
-            r_passwordField.borderInactiveColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+            r_passwordField.placeholderColor = placeholderColor
+            r_passwordField.borderActiveColor = activeColor
+            r_passwordField.borderInactiveColor = inactiveColor
         }
     
         func addWarningToFields() {
             resetFieldColors()
+            let warnColor = #colorLiteral(red: 0.9322057424, green: 0.009281606348, blue: 0.01016797919, alpha: 1)
             for field in invalidRegistrationFields {
                 switch field {
                 case "First Name":
-                    firstnameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    firstnameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    firstnameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    firstnameField.placeholderColor = warnColor
+                    firstnameField.borderActiveColor = warnColor
+                    firstnameField.borderInactiveColor = warnColor
                 case "Last Name":
-                    lastnameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    lastnameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    lastnameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    lastnameField.placeholderColor = warnColor
+                    lastnameField.borderActiveColor = warnColor
+                    lastnameField.borderInactiveColor = warnColor
                 case "Email":
-                    emailField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    emailField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    emailField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    emailField.placeholderColor = warnColor
+                    emailField.borderActiveColor = warnColor
+                    emailField.borderInactiveColor = warnColor
                 case "Phone Number":
-                    phoneField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    phoneField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    phoneField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    phoneField.placeholderColor = warnColor
+                    phoneField.borderActiveColor = warnColor
+                    phoneField.borderInactiveColor = warnColor
                 case "Username":
-                    r_usernameField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    r_usernameField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    r_usernameField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_usernameField.placeholderColor = warnColor
+                    r_usernameField.borderActiveColor = warnColor
+                    r_usernameField.borderInactiveColor = warnColor
                 case "Password":
-                    r_passwordField.placeholderColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    r_passwordField.borderActiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
-                    r_passwordField.borderInactiveColor = #colorLiteral(red: 0.6275777284, green: 0, blue: 0.06438077612, alpha: 1)
+                    r_passwordField.placeholderColor = warnColor
+                    r_passwordField.borderActiveColor = warnColor
+                    r_passwordField.borderInactiveColor = warnColor
                 default:
                     return
             }

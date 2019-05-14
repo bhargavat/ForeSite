@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import SwiftyJSON
 
 struct event {
     var id: String
@@ -19,6 +20,13 @@ struct event {
     var price : String
     var location : String
     var image : UIImage
+    var add_ons : Array<Any>
+}
+
+struct add_on {
+    var title: String
+    var quantity: Int
+    var price: Double
 }
 
 class EventTableViewCell: UITableViewCell{
@@ -29,3 +37,110 @@ class EventTableViewCell: UITableViewCell{
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventLocation: UILabel!
 }
+
+
+class FreeResponseViewCell: UITableViewCell{
+    @IBOutlet weak var surveyQuestionLabel: UILabel!
+    @IBOutlet weak var surveyResponseField: UITextView!
+}
+
+class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    @IBOutlet weak var surveyQuestionLabel: UILabel!
+    @IBOutlet weak var singlePickerView: UIPickerView!
+    var pickerData = [String](){
+        didSet{
+            self.singlePickerView.dataSource = self
+            self.singlePickerView.delegate = self
+        }
+    }
+    let optionPicker = UIPickerView()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+}
+
+//reference: https://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
+
+class MultipleChoiceViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource{
+    @IBOutlet weak var surveyQuestionLabel: UILabel!
+    @IBOutlet weak var optionsList: UITableView!{
+        didSet{
+            self.optionsList.delegate = self
+            self.optionsList.dataSource = self
+            self.optionsList.rowHeight = 45
+            
+            let nibOptionCell = UINib(nibName: "SimpleTableCell", bundle: nil)
+            self.optionsList.register(nibOptionCell, forCellReuseIdentifier: "SimpleTableCell")
+            self.optionsList.reloadData()
+        }
+    }
+    var options = [String](){
+        didSet{
+            self.optionsList.reloadData()
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("options")
+        return options.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("celly")
+        let return_cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableCell", for: indexPath) as! SimpleTableViewCell
+        
+        return_cell.optionLabel.text = options[indexPath.row]
+        return return_cell
+    }
+    
+}
+
+class SimpleTableViewCell: UITableViewCell{
+    @IBOutlet weak var optionLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+}
+
+class AddOnTableViewCell: UITableViewCell{
+    
+    weak var delegate: AddOnUpdated?
+    @IBOutlet weak var addonLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var quantityStepper: UIStepper!
+    var quantity : Int = 0
+    //ref: https://stackoverflow.com/questions/42876739/swift-increment-label-with-stepper-in-tableview-cell
+    @IBAction func quantityStep(_ sender: UIStepper) {
+        if(Int(sender.value) <= ticket_qty){
+            self.quantity = Int(sender.value)
+            self.quantityLabel.text = String(quantity)
+            self.quantityStepper.value = Double(quantity)
+            var title = addonLabel.text!
+            if let index = title.range(of: " (+$"){
+                title = String(title[..<index.lowerBound])
+            }
+            delegate?.quantityUpdated(label: title, value: self.quantity)
+            
+        }
+    }
+    
+}
+
+

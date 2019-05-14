@@ -10,6 +10,20 @@ import Foundation
 import CommonCrypto
 import UIKit
 
+//A set of object extensions to support application-related needs
+extension Double {
+    func roundTo(places:Int) -> String {
+        return String(format: "%.\(places)f", self)
+    }
+    
+    func dollarRound() -> String {
+        return String(format: "%.\(2)f", self)
+    }
+    func dollarRoundDouble() -> Double {
+        return Double(String(format: "%.\(2)f", self))!
+    }
+}
+
 extension String {
     //Validate Email
     var isEmail: Bool {
@@ -40,6 +54,21 @@ extension String {
         return hexString
     }
     
+    func reformatDate(fromFormat:String, toFormat:String) -> String {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = fromFormat
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = toFormat
+        
+        if let date = dateFormatterGet.date(from: self) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+            return self
+        }
+    }
+    
 }
 
 //reference: https://stackoverflow.com/questions/32281651/how-to-dismiss-keyboard-when-touching-anywhere-outside-uitextfield-in-swift
@@ -59,3 +88,4 @@ extension UIViewController{
         view.endEditing(true)
     }
 }
+

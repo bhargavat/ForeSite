@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="freeResponseCell" rowHeight="285" id="VSG-NW-h5i" customClass="FreeResponseViewCell" customModule="ForeSite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="438" height="285"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VSG-NW-h5i" id="ceU-GZ-EbN">
+                <rect key="frame" x="0.0" y="0.0" width="438" height="284.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ld8-o1-DIw">
+                        <rect key="frame" x="20" y="69" width="398" height="194"/>
+                        <color key="backgroundColor" red="0.95572255709999998" green="0.95572255709999998" blue="0.95572255709999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration" hint="Enter your response here"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="194" id="c3X-G4-REr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Nh-ku-Y5F">
+                        <rect key="frame" x="20" y="11" width="398" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="MCv-TL-p6n"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ld8-o1-DIw" firstAttribute="trailing" secondItem="ceU-GZ-EbN" secondAttribute="trailingMargin" id="8jA-mg-YhI"/>
+                    <constraint firstItem="7Nh-ku-Y5F" firstAttribute="leading" secondItem="ceU-GZ-EbN" secondAttribute="leadingMargin" id="PJy-Ux-d5d"/>
+                    <constraint firstItem="Ld8-o1-DIw" firstAttribute="bottom" secondItem="ceU-GZ-EbN" secondAttribute="bottomMargin" constant="-11" id="W0u-Sq-qgp"/>
+                    <constraint firstItem="Ld8-o1-DIw" firstAttribute="top" secondItem="7Nh-ku-Y5F" secondAttribute="bottom" constant="13" id="fNr-uP-w7E"/>
+                    <constraint firstItem="7Nh-ku-Y5F" firstAttribute="trailing" secondItem="ceU-GZ-EbN" secondAttribute="trailingMargin" id="y1e-0Z-y6B"/>
+                    <constraint firstItem="Ld8-o1-DIw" firstAttribute="leading" secondItem="ceU-GZ-EbN" secondAttribute="leadingMargin" id="ylu-Ys-Q5E"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="surveyQuestionLabel" destination="7Nh-ku-Y5F" id="L6S-nf-9OO"/>
+                <outlet property="surveyResponseField" destination="Ld8-o1-DIw" id="YK5-JQ-k9Y"/>
+            </connections>
+            <point key="canvasLocation" x="115.2" y="79.610194902548727"/>
+        </tableViewCell>
+    </objects>
+</document>

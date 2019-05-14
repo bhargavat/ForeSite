@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="multiChoiceCell" rowHeight="285" id="09U-gc-IWt" customClass="MultipleChoiceViewCell" customModule="ForeSite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="285"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="09U-gc-IWt" id="0rv-XK-ZNT">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="284.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5x-WT-Fp7">
+                        <rect key="frame" x="15" y="1.5" width="372" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Yza-nA-LoS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zKP-UM-HX0">
+                        <rect key="frame" x="15" y="69.5" width="372" height="200"/>
+                        <color key="backgroundColor" red="0.25882352939999997" green="0.75294117650000003" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="372" id="CbI-C6-Ph2"/>
+                            <constraint firstAttribute="height" constant="200" id="gXB-Bx-bdi"/>
+                        </constraints>
+                    </tableView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="V5x-WT-Fp7" secondAttribute="trailing" constant="15" id="1vN-GA-1tx"/>
+                    <constraint firstItem="zKP-UM-HX0" firstAttribute="top" secondItem="V5x-WT-Fp7" secondAttribute="bottom" constant="8" id="6Gp-kx-h5i"/>
+                    <constraint firstItem="V5x-WT-Fp7" firstAttribute="leading" secondItem="0rv-XK-ZNT" secondAttribute="leading" constant="15" id="DJ6-ou-LT5"/>
+                    <constraint firstAttribute="trailing" secondItem="zKP-UM-HX0" secondAttribute="trailing" constant="15" id="UXR-7o-2o4"/>
+                    <constraint firstItem="zKP-UM-HX0" firstAttribute="leading" secondItem="0rv-XK-ZNT" secondAttribute="leading" constant="15" id="VQg-ox-AL7"/>
+                    <constraint firstAttribute="bottom" secondItem="zKP-UM-HX0" secondAttribute="bottom" constant="15" id="nIq-gg-Sf7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="optionsList" destination="zKP-UM-HX0" id="XT9-sD-p0u"/>
+                <outlet property="surveyQuestionLabel" destination="V5x-WT-Fp7" id="ILA-eY-wpG"/>
+            </connections>
+            <point key="canvasLocation" x="73.599999999999994" y="264.91754122938534"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -10,3 +10,5 @@ import Foundation
 
 let my_string = "HERRO"
 var username:String = ""
+
+var ticket_qty = 0
