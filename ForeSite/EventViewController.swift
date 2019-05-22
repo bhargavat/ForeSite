@@ -122,6 +122,7 @@ class EventViewController: UIViewController {
             if let destination = segue.destination as? CheckoutController {
                 destination.checkout_event = event
                 destination.survey_questions = survey_questions!
+                print("segue:",survey_questions!)
             }
         }
     }

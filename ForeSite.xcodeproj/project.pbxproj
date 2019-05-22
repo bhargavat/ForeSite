@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041A0EFF2294C6E500987B91 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A0EFE2294C6E500987B91 /* OrderViewController.swift */; };
 		041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041AFA96227A10EF00348AE2 /* SurveyController.swift */; };
 		041AFA9A2284E79500348AE2 /* MultiChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041AFA992284E79500348AE2 /* MultiChoiceCell.xib */; };
 		041AFA9C2284F68100348AE2 /* FreeResponseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 041AFA9B2284F68100348AE2 /* FreeResponseCell.xib */; };
@@ -20,6 +21,7 @@
 		042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042B8A5421BDAA1900E02F77 /* LaunchScreen.storyboard */; };
 		042B8A6121BDAA1900E02F77 /* ForeSiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6021BDAA1900E02F77 /* ForeSiteTests.swift */; };
 		042B8A6C21BDAA1900E02F77 /* ForeSiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */; };
+		043D045B2290A989002382E3 /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D045A2290A989002382E3 /* OrdersController.swift */; };
 		044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
 		04728BE6220BB95C00067283 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04728BE5220BB95C00067283 /* EventViewController.swift */; };
 		049AAF2322593B6500F7759F /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF2222593B6500F7759F /* AuthController.swift */; };
@@ -33,6 +35,7 @@
 		04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CB85E921DC8AC900549DED /* Images.xcassets */; };
 		04F79FFE228742A3008EFF4D /* SingleChoiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */; };
 		04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */; };
+		04FAC399228DDE86000BE576 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC398228DDE85000BE576 /* PaymentController.swift */; };
 		0E23D205E7001C00D699EAAF /* Pods_ForeSiteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85E121DC68B500549DED /* Pods_ForeSiteUITests.framework */; };
 		2F91507FA728CFC98EA60D6E /* Pods_ForeSite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */; };
 		672799BE7427DB9EC46C9E7C /* Pods_ForeSiteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB85DF21DC68B500549DED /* Pods_ForeSiteTests.framework */; };
@@ -59,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		035A34D632A78D837C27543E /* Pods-ForeSite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.debug.xcconfig"; sourceTree = "<group>"; };
+		041A0EFE2294C6E500987B91 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		041AFA96227A10EF00348AE2 /* SurveyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyController.swift; sourceTree = SOURCE_ROOT; };
 		041AFA992284E79500348AE2 /* MultiChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiChoiceCell.xib; sourceTree = "<group>"; };
 		041AFA9B2284F68100348AE2 /* FreeResponseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeResponseCell.xib; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 		042B8A6721BDAA1900E02F77 /* ForeSiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForeSiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeSiteUITests.swift; sourceTree = "<group>"; };
 		042B8A6D21BDAA1900E02F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043D045A2290A989002382E3 /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		044534CA21D801FE008DC137 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CE21D80643008DC137 /* AWSAuthCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAuthCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +105,7 @@
 		04CB85E921DC8AC900549DED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleChoiceCell.xib; sourceTree = "<group>"; };
 		04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		04FAC398228DDE85000BE576 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		1D91F6A4B8289A616FFAA908 /* Pods-ForeSiteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSiteUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSiteUITests/Pods-ForeSiteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21F070DA5BCAE6A5972F7ED4 /* Pods_ForeSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForeSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		269E80291DA8F6A619C8B360 /* Pods-ForeSite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForeSite.release.xcconfig"; path = "Pods/Target Support Files/Pods-ForeSite/Pods-ForeSite.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,12 +197,15 @@
 				04CB85E921DC8AC900549DED /* Images.xcassets */,
 				04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */,
 				0428F86B220040A3001D75E7 /* CellData.swift */,
+				041AFA96227A10EF00348AE2 /* SurveyController.swift */,
 				04728BE5220BB95C00067283 /* EventViewController.swift */,
 				049AAF2222593B6500F7759F /* AuthController.swift */,
 				049AAF242259DBDA00F7759F /* GlobalData.swift */,
 				049AAF262259E30900F7759F /* Extensions.swift */,
 				04B30B5A226795C100A78C84 /* CheckoutController.swift */,
-				041AFA96227A10EF00348AE2 /* SurveyController.swift */,
+				04FAC398228DDE85000BE576 /* PaymentController.swift */,
+				043D045A2290A989002382E3 /* OrdersController.swift */,
+				041A0EFE2294C6E500987B91 /* OrderViewController.swift */,
 			);
 			path = ForeSite;
 			sourceTree = "<group>";
@@ -504,11 +513,14 @@
 				04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */,
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */,
+				043D045B2290A989002382E3 /* OrdersController.swift in Sources */,
 				042B8A4B21BDAA1800E02F77 /* ViewController.swift in Sources */,
 				0428F86C220040A3001D75E7 /* CellData.swift in Sources */,
+				04FAC399228DDE86000BE576 /* PaymentController.swift in Sources */,
 				049AAF272259E30900F7759F /* Extensions.swift in Sources */,
 				049AAF2322593B6500F7759F /* AuthController.swift in Sources */,
 				049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */,
+				041A0EFF2294C6E500987B91 /* OrderViewController.swift in Sources */,
 				04B30B5B226795C100A78C84 /* CheckoutController.swift in Sources */,
 				042B8A4921BDAA1800E02F77 /* AppDelegate.swift in Sources */,
 				04728BE6220BB95C00067283 /* EventViewController.swift in Sources */,

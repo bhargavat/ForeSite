@@ -38,23 +38,52 @@ class EventTableViewCell: UITableViewCell{
     @IBOutlet weak var eventLocation: UILabel!
 }
 
-
-class FreeResponseViewCell: UITableViewCell{
+//reference: https://medium.com/@georgetsifrikas/embedding-uitextview-inside-uitableviewcell-9a28794daf01
+class FreeResponseViewCell: UITableViewCell, UITextViewDelegate{
     @IBOutlet weak var surveyQuestionLabel: UILabel!
     @IBOutlet weak var surveyResponseField: UITextView!
+    weak var delegate: SurveyUpdated?
+    var indexPath: Int = -1
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        surveyResponseField.delegate = self
+    }
+    
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        delegate?.freeResponseUpdated(question: surveyQuestionLabel.text!, answer: textView.text!, index: indexPath)
+        print(textView.text!) //the textView parameter is the textView where text was changed
+    }
 }
 
 class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    weak var delegate: SurveyUpdated?
     @IBOutlet weak var surveyQuestionLabel: UILabel!
     @IBOutlet weak var singlePickerView: UIPickerView!
+    var indexPath: Int = -1 //updated to which section it belongs to
     var pickerData = [String](){
         didSet{
             self.singlePickerView.dataSource = self
             self.singlePickerView.delegate = self
         }
     }
-    let optionPicker = UIPickerView()
+//    let optionPicker = UIPickerView()
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let index = self.singlePickerView.selectedRow(inComponent: component)
+        print("indexPath:",self.indexPath)
+        delegate?.singleChoiceUpdated(question: surveyQuestionLabel.text!, answer: self.pickerData[index], index: self.indexPath)
+    }
+    
+    func getIndexPath() -> IndexPath? {
+        guard let superView = self.superview as? UITableView else {
+            print("superview is not a UITableView - getIndexPath")
+            return nil
+        }
+        let indexPath: IndexPath? = superView.indexPath(for: self)
+        return indexPath
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -64,7 +93,7 @@ class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
         return pickerData.count
     }
     
-    // The data to return fopr the row and component (column) that's being passed in
+    // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerData[row]
     }
@@ -73,6 +102,9 @@ class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
 //reference: https://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
 
 class MultipleChoiceViewCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource{
+    weak var delegate: SurveyUpdated?
+    var indexPath: Int = -1 //row of 
+    var selectedOptions: JSON = []
     @IBOutlet weak var surveyQuestionLabel: UILabel!
     @IBOutlet weak var optionsList: UITableView!{
         didSet{
@@ -94,17 +126,40 @@ class MultipleChoiceViewCell: UITableViewCell, UITableViewDelegate, UITableViewD
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? SimpleTableViewCell{
+//            print(cell.optionLabel.text!)
+//            print(indexPath.row)
+            delegate?.multiChoiceUpdated(question: surveyQuestionLabel.text!, answer: cell.optionLabel.text!, index: self.indexPath, selection: "select")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? SimpleTableViewCell{
+//            print(cell.optionLabel.text!)
+//            print(indexPath.row)
+            delegate?.multiChoiceUpdated(question: surveyQuestionLabel.text!, answer: cell.optionLabel.text!, index: self.indexPath, selection: "deselect")
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("options")
+        //print("options")
         return options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("celly")
+        //print("celly")
         let return_cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableCell", for: indexPath) as! SimpleTableViewCell
-        
+
         return_cell.optionLabel.text = options[indexPath.row]
+        print(options[indexPath.row],":",selectedOptions[options[indexPath.row]])
+        if(selectedOptions != []){
+            if(selectedOptions[options[indexPath.row]][self.indexPath] == 1){
+                self.optionsList.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+
+            }
+        }
+        
         return return_cell
     }
     
@@ -140,7 +195,13 @@ class AddOnTableViewCell: UITableViewCell{
             
         }
     }
-    
 }
 
-
+class OrderTableViewCell: UITableViewCell{
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventEndLabel: UILabel!
+    @IBOutlet weak var eventStartLabel: UILabel!
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var eventPurchaseDate: UILabel!
+}

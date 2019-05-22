@@ -40,8 +40,8 @@
                     <constraint firstAttribute="trailing" secondItem="V5x-WT-Fp7" secondAttribute="trailing" constant="15" id="1vN-GA-1tx"/>
                     <constraint firstItem="zKP-UM-HX0" firstAttribute="top" secondItem="V5x-WT-Fp7" secondAttribute="bottom" constant="8" id="6Gp-kx-h5i"/>
                     <constraint firstItem="V5x-WT-Fp7" firstAttribute="leading" secondItem="0rv-XK-ZNT" secondAttribute="leading" constant="15" id="DJ6-ou-LT5"/>
-                    <constraint firstAttribute="trailing" secondItem="zKP-UM-HX0" secondAttribute="trailing" constant="15" id="UXR-7o-2o4"/>
-                    <constraint firstItem="zKP-UM-HX0" firstAttribute="leading" secondItem="0rv-XK-ZNT" secondAttribute="leading" constant="15" id="VQg-ox-AL7"/>
+                    <constraint firstAttribute="trailing" secondItem="zKP-UM-HX0" secondAttribute="trailing" priority="999" constant="15" id="UXR-7o-2o4"/>
+                    <constraint firstItem="zKP-UM-HX0" firstAttribute="leading" secondItem="0rv-XK-ZNT" secondAttribute="leading" priority="999" constant="15" id="VQg-ox-AL7"/>
                     <constraint firstAttribute="bottom" secondItem="zKP-UM-HX0" secondAttribute="bottom" constant="15" id="nIq-gg-Sf7"/>
                 </constraints>
             </tableViewCellContentView>

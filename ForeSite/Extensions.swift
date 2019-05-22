@@ -9,6 +9,7 @@
 import Foundation
 import CommonCrypto
 import UIKit
+import SwiftyJSON
 
 //A set of object extensions to support application-related needs
 extension Double {
@@ -86,6 +87,23 @@ extension UIViewController{
     @objc func dismissKeyboard()
     {
         view.endEditing(true)
+    }
+}
+
+//reference: https://stackoverflow.com/questions/29046255/how-to-append-new-data-to-an-existing-json-arrayswiftyjson
+extension JSON{
+    mutating func appendIfArray(json:JSON){
+        if var arr = self.array{
+            arr.append(json)
+            self = JSON(arr);
+        }
+    }
+    
+    mutating func appendIfDictionary(key:String,json:JSON){
+        if var dict = self.dictionary{
+            dict[key] = json;
+            self = JSON(dict);
+        }
     }
 }
 

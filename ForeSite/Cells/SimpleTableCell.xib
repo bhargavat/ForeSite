@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue0-Mo-vyT">
-                        <rect key="frame" x="0.0" y="0.0" width="366" height="45"/>
+                        <rect key="frame" x="32" y="0.0" width="324" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="999" constant="45" id="E7t-PH-9kf"/>
-                            <constraint firstAttribute="width" constant="366" id="ri3-I6-DwW"/>
+                            <constraint firstAttribute="width" constant="324" id="ri3-I6-DwW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -31,9 +31,9 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="ue0-Mo-vyT" firstAttribute="leading" secondItem="aSn-4f-0vH" secondAttribute="leading" id="5qc-9g-wS1"/>
+                    <constraint firstItem="ue0-Mo-vyT" firstAttribute="leading" secondItem="aSn-4f-0vH" secondAttribute="leading" constant="32" id="5qc-9g-wS1"/>
                     <constraint firstAttribute="bottom" secondItem="ue0-Mo-vyT" secondAttribute="bottom" id="DAt-YL-DF6"/>
-                    <constraint firstAttribute="trailing" secondItem="ue0-Mo-vyT" secondAttribute="trailing" constant="6" id="FkG-16-JkH"/>
+                    <constraint firstAttribute="trailing" secondItem="ue0-Mo-vyT" secondAttribute="trailing" constant="16" id="FkG-16-JkH"/>
                     <constraint firstItem="ue0-Mo-vyT" firstAttribute="top" secondItem="aSn-4f-0vH" secondAttribute="top" id="RJR-bx-zad"/>
                 </constraints>
             </tableViewCellContentView>

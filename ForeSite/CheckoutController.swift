@@ -160,6 +160,7 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
                 destination.checkout_event = checkout_event!
                 destination.survey_questions = survey_questions!
                 destination.add_ons = self.add_ons
+                print("segue1:",survey_questions!)
             }
         }
     }
