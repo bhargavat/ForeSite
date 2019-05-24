@@ -16,6 +16,8 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var user_tickets:[JSON] = []
     var tickets_info:[JSON] = []
+    
+    var selectedTicketID: String = ""
     @IBOutlet weak var ordersTableView: UITableView!
     
     override func viewDidLoad() {
@@ -35,6 +37,14 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func addTicketDetails(data: JSON){
         self.tickets_info.append(data)
     }
+    
+    //when cell is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedTicketID = user_tickets[indexPath.row]["ticket_id"].string!
+        print("selectID:",self.selectedTicketID)
+        performSegue(withIdentifier: "ViewOrderSegue", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("tickets: ", user_tickets.count)
         return user_tickets.count
@@ -48,7 +58,7 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.eventTitleLabel.text = eventDetails["title"].string!
         cell.eventStartLabel.text = eventDetails["start_date"].string!.reformatDate(fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " • " + eventDetails["start_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
         cell.eventEndLabel.text = eventDetails["end_date"].string!.reformatDate(fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " • " + eventDetails["end_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
-        cell.eventPurchaseDate.text = "Purchased on "+eventDetails["creation_date"].string!.reformatDate(fromFormat: "E, d MMM yyyy HH:mm:ss Z", toFormat: "MMM d, h:mm a")
+        cell.eventPurchaseDate.text = "Purchased on "+eventDetails["creation_date"].string!.reformatDate(fromFormat: "E, d MMM yyyy HH:mm:ss Z", toFormat: "MMM d YYYY, h:mm a")
         
         var imageRef = "placeholder"
         var imageData: Data? = nil
@@ -66,6 +76,7 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
             image = UIImage(data: imageData!)!
         }
         cell.eventImage.image = image
+        //cell.eventImage.image = eventDetails["ticket_id"].string!.generateQRCode()
         //cell.QRImage.image = generateQRCode(from: eventDetails["ticket_id"].string!)
         return cell
     }
@@ -122,18 +133,14 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-        
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("identifier:",segue.identifier!)
+        print("destination:",segue.destination)
+        if let destination = segue.destination as? UINavigationController,
+            let orderViewController = destination.viewControllers.first as? OrderViewController {
+                orderViewController.ticketID = self.selectedTicketID
             }
-        }
-        
-        return nil
     }
 }
