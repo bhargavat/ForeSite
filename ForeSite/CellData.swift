@@ -205,3 +205,5 @@ class OrderTableViewCell: UITableViewCell{
     @IBOutlet weak var eventImage: UIImageView!
     @IBOutlet weak var eventPurchaseDate: UILabel!
 }
+
+

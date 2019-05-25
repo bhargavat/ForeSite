@@ -39,6 +39,17 @@ class OrderViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func openQRPopup(_ sender: Any) {
+        let vc = QRPopupViewController()
+        //print("TICKET_IMG:", ticketID.generateQRCode())
+        vc.QRData = ticketID
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    
     func getEventDetails(){
         let parameters = ["ticket_id": ticketID]
         AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in

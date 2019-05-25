@@ -21,6 +21,8 @@
 		042B8A5621BDAA1900E02F77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042B8A5421BDAA1900E02F77 /* LaunchScreen.storyboard */; };
 		042B8A6121BDAA1900E02F77 /* ForeSiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6021BDAA1900E02F77 /* ForeSiteTests.swift */; };
 		042B8A6C21BDAA1900E02F77 /* ForeSiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */; };
+		043379D32298AE4D004D6B97 /* QRPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043379D12298AE4D004D6B97 /* QRPopupViewController.swift */; };
+		043379D42298AE4D004D6B97 /* QRPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043379D22298AE4D004D6B97 /* QRPopupViewController.xib */; };
 		043D045B2290A989002382E3 /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D045A2290A989002382E3 /* OrdersController.swift */; };
 		044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
 		04728BE6220BB95C00067283 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04728BE5220BB95C00067283 /* EventViewController.swift */; };
@@ -82,6 +84,8 @@
 		042B8A6721BDAA1900E02F77 /* ForeSiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForeSiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeSiteUITests.swift; sourceTree = "<group>"; };
 		042B8A6D21BDAA1900E02F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043379D12298AE4D004D6B97 /* QRPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPopupViewController.swift; sourceTree = "<group>"; };
+		043379D22298AE4D004D6B97 /* QRPopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRPopupViewController.xib; sourceTree = "<group>"; };
 		043D045A2290A989002382E3 /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		044534CA21D801FE008DC137 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +153,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		041AFA982284E73C00348AE2 /* Cells */ = {
+		041AFA982284E73C00348AE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				041AFA992284E79500348AE2 /* MultiChoiceCell.xib */,
@@ -157,7 +161,7 @@
 				041AFA9D22856C6A00348AE2 /* SimpleTableCell.xib */,
 				04F79FFD228742A3008EFF4D /* SingleChoiceCell.xib */,
 			);
-			path = Cells;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		042B8A3C21BDAA1800E02F77 = {
@@ -185,7 +189,7 @@
 		042B8A4721BDAA1800E02F77 /* ForeSite */ = {
 			isa = PBXGroup;
 			children = (
-				041AFA982284E73C00348AE2 /* Cells */,
+				041AFA982284E73C00348AE2 /* Components */,
 				04B30B592265BC7300A78C84 /* Classes */,
 				042B8A4821BDAA1800E02F77 /* AppDelegate.swift */,
 				042B8A4A21BDAA1800E02F77 /* ViewController.swift */,
@@ -232,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				04B30B572265BC3D00A78C84 /* RoundedButton.swift */,
+				043379D12298AE4D004D6B97 /* QRPopupViewController.swift */,
+				043379D22298AE4D004D6B97 /* QRPopupViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -382,6 +388,7 @@
 			files = (
 				041AFA9E22856C6A00348AE2 /* SimpleTableCell.xib in Resources */,
 				041AFA9C2284F68100348AE2 /* FreeResponseCell.xib in Resources */,
+				043379D42298AE4D004D6B97 /* QRPopupViewController.xib in Resources */,
 				04F79FFE228742A3008EFF4D /* SingleChoiceCell.xib in Resources */,
 				041AFA9A2284E79500348AE2 /* MultiChoiceCell.xib in Resources */,
 				04CB85EA21DC8AC900549DED /* Images.xcassets in Resources */,
@@ -511,6 +518,7 @@
 			files = (
 				042B8A5121BDAA1800E02F77 /* ForeSite.xcdatamodeld in Sources */,
 				04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */,
+				043379D32298AE4D004D6B97 /* QRPopupViewController.swift in Sources */,
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */,
 				043D045B2290A989002382E3 /* OrdersController.swift in Sources */,

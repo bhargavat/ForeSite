@@ -136,8 +136,8 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("identifier:",segue.identifier!)
-        print("destination:",segue.destination)
+        //print("identifier:",segue.identifier!)
+        //print("destination:",segue.destination)
         if let destination = segue.destination as? UINavigationController,
             let orderViewController = destination.viewControllers.first as? OrderViewController {
                 orderViewController.ticketID = self.selectedTicketID
