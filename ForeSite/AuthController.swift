@@ -39,6 +39,8 @@ class AuthController: UIViewController, UITextFieldDelegate{
         case "loginView":
             self.usernameField.delegate = self
             self.passwordField.delegate = self
+            self.usernameField.text = "ctarng"
+            self.passwordField.text = "abc"
         case "registerView":
             self.firstnameField.delegate = self
             self.lastnameField.delegate = self
@@ -50,6 +52,8 @@ class AuthController: UIViewController, UITextFieldDelegate{
             break
         }
         self.hideKeyboard()
+        
+
     }
     
     
@@ -60,7 +64,7 @@ class AuthController: UIViewController, UITextFieldDelegate{
         if (usernameInput != "" && passwordInput != ""){
             let parameters: Parameters = ["user_name":usernameInput!, "password": passwordInput!.md5()]
             
-            AF.request("http://127.0.0.1:5000/foresite/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+            AF.request(base_url + "/foresite/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                 
                 if (response.data != nil){
                     do{
@@ -142,7 +146,7 @@ class AuthController: UIViewController, UITextFieldDelegate{
                  "password": r_passwordField.text!.md5()]
             
             if(isvalidRegistrationInput() == true){
-                AF.request("http://127.0.0.1:5000/foresite/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+                AF.request(base_url + "/foresite/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                     
                     do{
                         let json = try JSON(data: response.data!)

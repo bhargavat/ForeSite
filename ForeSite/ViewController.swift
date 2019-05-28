@@ -308,7 +308,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @objc func fetchEvents(){
         self.sampleEvents = []
-        AF.request("http://127.0.0.1:5000/foresite/getEventList", method: .post, encoding: JSONEncoding.default).responseJSON{ response in
+        AF.request(base_url+"/foresite/getEventList", method: .post, encoding: JSONEncoding.default).responseJSON{ response in
             
             do{
                 let json = try JSON(data: response.data!)

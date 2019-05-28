@@ -38,7 +38,7 @@ class EventViewController: UIViewController {
 
         let parameters: Parameters = ["event_id": event?.id as Any]
 
-        AF.request("http://127.0.0.1:5000/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+        AF.request(base_url + "/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
 
             do{
                 

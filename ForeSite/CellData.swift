@@ -209,7 +209,7 @@ class AddOnRedeemTableViewCell: UITableViewCell{
         if(Int(sender.value) <= max_quantity && sender.value >= 0){
             self.quantity = Int(sender.value)
             self.quantityLabel.text = String(quantity) + "/" + String(max_quantity)
-            var title = addonLabel.text!
+            let title = addonLabel.text!
             delegate?.quantityUpdated(label: title, value: self.quantity)
             
         }

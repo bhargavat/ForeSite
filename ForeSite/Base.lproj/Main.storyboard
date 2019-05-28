@@ -543,13 +543,47 @@
                     <view key="view" contentMode="scaleToFill" id="hT7-KG-TEp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aimer" translatesAutoresizingMaskIntoConstraints="NO" id="MNC-Dv-qwq">
+                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="cDC-KV-DSg"/>
+                                    <constraint firstAttribute="width" constant="240" id="w5U-ZT-HTk"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bb-2x-rwN">
+                                <rect key="frame" x="134" y="740" width="146" height="72"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.75294117650000003" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissScanner:" destination="52V-Mz-hWz" eventType="touchUpInside" id="QdL-Pv-IZf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8bb-2x-rwN" firstAttribute="top" secondItem="MNC-Dv-qwq" secondAttribute="bottom" constant="172" id="E5t-jM-Rat"/>
+                            <constraint firstItem="PoZ-pD-H4K" firstAttribute="bottom" secondItem="MNC-Dv-qwq" secondAttribute="bottom" constant="294" id="FVN-k7-IfS"/>
+                            <constraint firstItem="MNC-Dv-qwq" firstAttribute="leading" secondItem="PoZ-pD-H4K" secondAttribute="leading" constant="87" id="ZlY-Pp-qZz"/>
+                            <constraint firstItem="PoZ-pD-H4K" firstAttribute="trailing" secondItem="8bb-2x-rwN" secondAttribute="trailing" constant="134" id="Znz-On-5JN"/>
+                            <constraint firstItem="PoZ-pD-H4K" firstAttribute="trailing" secondItem="MNC-Dv-qwq" secondAttribute="trailing" constant="87" id="alp-kZ-FVD"/>
+                            <constraint firstItem="8bb-2x-rwN" firstAttribute="leading" secondItem="PoZ-pD-H4K" secondAttribute="leading" constant="134" id="caV-E2-dfK"/>
+                            <constraint firstItem="MNC-Dv-qwq" firstAttribute="top" secondItem="PoZ-pD-H4K" secondAttribute="top" constant="240" id="wn7-1U-mPh"/>
+                            <constraint firstItem="PoZ-pD-H4K" firstAttribute="bottom" secondItem="8bb-2x-rwN" secondAttribute="bottom" constant="50" id="x1M-Ta-Mot"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PoZ-pD-H4K"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="aimer" destination="MNC-Dv-qwq" id="ywm-eA-abI"/>
+                        <outlet property="closeButton" destination="8bb-2x-rwN" id="imK-2t-ULa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qs-Pr-sMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="1487"/>
+            <point key="canvasLocation" x="89.855072463768124" y="1486.6071428571429"/>
         </scene>
         <!--Orders Controller-->
         <scene sceneID="GuN-sj-TbS">
@@ -1479,6 +1513,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="aimer" width="279.83999633789062" height="279.60000610351562"/>
         <image name="bg" width="605" height="605.280029296875"/>
         <image name="eye" width="96" height="96"/>
         <image name="home-icon" width="154.28572082519531" height="154.28572082519531"/>
@@ -1487,6 +1522,7 @@
         <image name="sidebar_menu_1x" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="AAr-dL-aXO"/>
         <segue reference="01b-Ph-jST"/>
         <segue reference="JJ4-fc-YzY"/>
         <segue reference="baN-KK-0fv"/>

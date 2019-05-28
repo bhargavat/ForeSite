@@ -2,6 +2,7 @@
 //  QRReader.swift
 //  ForeSite
 //
+//  QR Reader to scan foresite-generated tickets and mark them as redeemed
 //  Created by Bhargava on 5/24/19.
 //  Copyright © 2019 Bhargava. All rights reserved.
 // ref: https://www.hackingwithswift.com/example-code/media/how-to-scan-a-barcode
@@ -12,13 +13,14 @@ import UIKit
 
 class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    @IBOutlet weak var closeButton: UIButton!
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    @IBOutlet weak var aimer: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
         
@@ -42,9 +44,9 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         if (captureSession.canAddOutput(metadataOutput)) {
             captureSession.addOutput(metadataOutput)
-            
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
+            //metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
+            metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes
         } else {
             failed()
             return
@@ -54,10 +56,15 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-        
+        self.view.bringSubviewToFront(aimer)
+        self.view.bringSubviewToFront(closeButton)
         captureSession.startRunning()
     }
     
+    @IBAction func dismissScanner(_ sender: Any) {
+        captureSession.stopRunning()
+        dismiss(animated: true)
+    }
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -86,7 +93,7 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func captureOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession.stopRunning()
         
         if let metadataObject = metadataObjects.first {
@@ -99,6 +106,7 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         dismiss(animated: true)
     }
     
+    //function to execute after successful QR code
     func found(code: String) {
         print(code)
     }
