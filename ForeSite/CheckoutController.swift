@@ -154,6 +154,7 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
         }
         AddOnTableView.reloadData()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "eventSurveySegue" {
             if let destination = segue.destination as? SurveyController {

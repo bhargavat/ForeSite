@@ -186,14 +186,34 @@ class AddOnTableViewCell: UITableViewCell{
         if(Int(sender.value) <= ticket_qty){
             self.quantity = Int(sender.value)
             self.quantityLabel.text = String(quantity)
-            self.quantityStepper.value = Double(quantity)
             var title = addonLabel.text!
             if let index = title.range(of: " (+$"){
                 title = String(title[..<index.lowerBound])
             }
             delegate?.quantityUpdated(label: title, value: self.quantity)
+        }
+        self.quantityStepper.value = Double(quantity)
+    }
+}
+
+class AddOnRedeemTableViewCell: UITableViewCell{
+    
+    weak var delegate: AddOnUpdated?
+    @IBOutlet weak var addonLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var quantityStepper: UIStepper!
+    var quantity : Int = 0
+    var max_quantity: Int = 0
+    //ref: https://stackoverflow.com/questions/42876739/swift-increment-label-with-stepper-in-tableview-cell
+    @IBAction func quantityStep(_ sender: UIStepper) {
+        if(Int(sender.value) <= max_quantity && sender.value >= 0){
+            self.quantity = Int(sender.value)
+            self.quantityLabel.text = String(quantity) + "/" + String(max_quantity)
+            var title = addonLabel.text!
+            delegate?.quantityUpdated(label: title, value: self.quantity)
             
         }
+        self.quantityStepper.value = Double(quantity)
     }
 }
 

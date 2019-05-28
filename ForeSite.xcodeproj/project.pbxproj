@@ -23,6 +23,7 @@
 		042B8A6C21BDAA1900E02F77 /* ForeSiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A6B21BDAA1900E02F77 /* ForeSiteUITests.swift */; };
 		043379D32298AE4D004D6B97 /* QRPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043379D12298AE4D004D6B97 /* QRPopupViewController.swift */; };
 		043379D42298AE4D004D6B97 /* QRPopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043379D22298AE4D004D6B97 /* QRPopupViewController.xib */; };
+		043379D622991853004D6B97 /* QRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043379D522991853004D6B97 /* QRReader.swift */; };
 		043D045B2290A989002382E3 /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043D045A2290A989002382E3 /* OrdersController.swift */; };
 		044534C921D7FFBD008DC137 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B8A4821BDAA1800E02F77 /* AppDelegate.swift */; };
 		04728BE6220BB95C00067283 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04728BE5220BB95C00067283 /* EventViewController.swift */; };
@@ -86,6 +87,7 @@
 		042B8A6D21BDAA1900E02F77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		043379D12298AE4D004D6B97 /* QRPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPopupViewController.swift; sourceTree = "<group>"; };
 		043379D22298AE4D004D6B97 /* QRPopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRPopupViewController.xib; sourceTree = "<group>"; };
+		043379D522991853004D6B97 /* QRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReader.swift; sourceTree = "<group>"; };
 		043D045A2290A989002382E3 /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		044534CA21D801FE008DC137 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		044534CC21D8059D008DC137 /* AWSAppSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSAppSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 				04CB85E921DC8AC900549DED /* Images.xcassets */,
 				04FA8E8821E6E0680082D89C /* UIButtonExtension.swift */,
 				0428F86B220040A3001D75E7 /* CellData.swift */,
+				043379D522991853004D6B97 /* QRReader.swift */,
 				041AFA96227A10EF00348AE2 /* SurveyController.swift */,
 				04728BE5220BB95C00067283 /* EventViewController.swift */,
 				049AAF2222593B6500F7759F /* AuthController.swift */,
@@ -527,6 +530,7 @@
 				04FAC399228DDE86000BE576 /* PaymentController.swift in Sources */,
 				049AAF272259E30900F7759F /* Extensions.swift in Sources */,
 				049AAF2322593B6500F7759F /* AuthController.swift in Sources */,
+				043379D622991853004D6B97 /* QRReader.swift in Sources */,
 				049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */,
 				041A0EFF2294C6E500987B91 /* OrderViewController.swift in Sources */,
 				04B30B5B226795C100A78C84 /* CheckoutController.swift in Sources */,
