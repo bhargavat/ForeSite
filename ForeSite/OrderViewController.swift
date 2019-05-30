@@ -11,7 +11,10 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddOnUpdated {
+protocol updateTicketQuantity: class{
+    func updateTicketQuantity()
+}
+class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddOnUpdated, updateTicketQuantity {
     
     @IBOutlet weak var eventTitleLabel: UILabel!
     @IBOutlet weak var eventLocationLabel: UILabel!
@@ -23,13 +26,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var quantityStepper: UIStepper!
     @IBOutlet weak var AddOnRedeemTableView: UITableView!
     @IBOutlet weak var RedeemLabel: UILabel!
+    @IBOutlet weak var scanButton: UIButton!
     
     var ticketID: String = ""
-    var ticketsRedeemed: Int = 0
+    var ticketsRedeemed: Int = 0 //
     var ticketQuantity: Int = 0
     var redeemQtySelected: Double = 1
     var add_ons: [JSON] = []
-    
+    var addon_maxQtys: [Int] = []
     override func viewDidLoad(){
         super.viewDidLoad()
         let backButton: UIBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.back))
@@ -37,20 +41,60 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.title = "Order Details"
         self.AddOnRedeemTableView.delegate = self
         self.AddOnRedeemTableView.dataSource = self
+        
         print("ID:", ticketID)
-
+        
         self.getEventDetails()
 //        self.AddOnRedeemTableView.register(AddOnTableViewCell.self, forCellReuseIdentifier: "AddOnRedeemCell")
     }
+    
+    //delegate function
+    func updateTicketQuantity() {
+        let parameters: Parameters = ["ticket_id":ticketID]
+        
+        AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            do{
+                let json = try JSON(data: response.data!)
+                if(json["response"] == "success"){
+                    print("SUCCESS")
+                    let eventDetails:JSON = json["results"]
+                    self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
+                    self.ticketQuantity = eventDetails["amount_bought"].int!
+                    
+                    if((self.ticketQuantity - self.ticketsRedeemed) < Int(self.redeemQtySelected)){
+                        self.redeemQtySelected = 1.0
+                    }
+                    if(self.ticketQuantity - self.ticketsRedeemed < 1){
+                        self.scanButton.isEnabled = false
+                        self.redeemQtySelected = 0.0
+                    }
+                    self.RedeemLabel.text = "Redeem \(String(Int(self.redeemQtySelected))) of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
+                    self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
+                }
+            }catch{
+                print("ERROR: Failed to cast to JSON format")
+            }
+        }
+    }
+    
     func quantityUpdated(label: String, value: Int) {
         for idx in 0..<add_ons.count{
             var c_addon: JSON = add_ons[idx]
             if(c_addon["name"].string! == label){
                 c_addon["quantity"] = JSON(value)
                 self.add_ons[idx] = c_addon
+                print(add_ons)
                 return
             }
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "My Add-ons"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,12 +104,13 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnRedeemCell", for: indexPath) as! AddOnRedeemTableViewCell
+        cell.delegate = self
         let c_addon:JSON = add_ons[indexPath.row]
         print("caddon-name:",c_addon["name"].string!)
         cell.addonLabel?.text = c_addon["name"].string!
-        cell.quantityLabel?.text = String(c_addon["quantity"].int!) + "/" + String(c_addon["quantity"].int!)
+        cell.quantityLabel?.text = String(c_addon["quantity"].int!) + "/" + String(addon_maxQtys[indexPath.row])
         cell.quantity = c_addon["quantity"].int!
-        cell.max_quantity = self.add_ons[indexPath.row]["quantity"].int!
+        cell.max_quantity = addon_maxQtys[indexPath.row]
         cell.quantityStepper.value = Double(c_addon["quantity"].int!)
         return cell
     }
@@ -73,17 +118,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func back() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-//    func quantityUpdated(label: String, value: Int) {
-//        for idx in 0..<add_ons.count{
-//            var c_addon: Dictionary<String, Any> = add_ons[idx] as! Dictionary<String, Any>
-//            if(String(describing: c_addon["name"]!) == label){
-//                c_addon["quantity"] = value
-//                self.add_ons[idx] = c_addon
-//                return
-//            }
-//        }
-//    }
     
     @IBAction func RedeemStepperClicked(_ sender: UIStepper) {
         if(Int(sender.value) <= (self.ticketQuantity - self.ticketsRedeemed) && Int(sender.value) > 0){
@@ -96,13 +130,57 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func openQRPopup(_ sender: Any) {
         let vc = QRPopupViewController()
-        //print("TICKET_IMG:", ticketID.generateQRCode())
+        vc.delegate = self
         vc.QRData = ticketID + ":" + String(Int(redeemQtySelected))
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
+        
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func redeemAddOnsClicked(_ sender: Any) {
+        let alertController = UIAlertController(title: "Confirm", message:
+            "You are about to redeem the following:\n" + self.getRedeemingAddOnsString(), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default){
+            UIAlertAction in
+            self.redeemAddOns()
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func getRedeemingAddOnsString() -> String{
+        var result: String = ""
+        for add_on in self.add_ons{
+            if(add_on["quantity"].int! > 0){
+                let addon_string = add_on["name"].string! + " (x" + String(add_on["quantity"].int!) + ")\n"
+                result += addon_string
+            }
+        }
+        return result
+    }
+    func redeemAddOns(){
+        let parameters: Parameters = ["ticket_id":ticketID, "add_ons": JSON(add_ons).rawValue]
+        AF.request(base_url + "/foresite/redeemAddOns", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            do{
+                let json = try JSON(data: response.data!)
+                if(json["response"] == "success"){
+                    
+                    print(json)
+                    let alert = UIAlertController(title: "Success", message: "Add-ons redeemed successfully", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: {
+                        self.getEventDetails()
+                    })
+                }
+            }catch{
+                print("ERROR: Failed to cast to JSON format")
+            }
+        }
+    }
     
     func getEventDetails(){
         let parameters = ["ticket_id": ticketID]
@@ -115,16 +193,26 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let eventDetails:JSON = json["results"]
                     print(eventDetails)
                     self.eventTitleLabel.text = eventDetails["title"].string!
-                    self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!)
+                    self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
                     self.eventLocationLabel.text = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
                     self.eventStartLabel.text = "From: " + eventDetails["start_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["start_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
                     self.eventEndLabel.text = "To: " + eventDetails["end_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["end_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
-                    self.RedeemLabel.text = "Redeem 1 of " + String(eventDetails["amount_bought"].int!)
-                    self.ticketsRedeemed = eventDetails["is_ticket_redeemed"].int!
+                    self.RedeemLabel.text = "Redeem 1 of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
+                    self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
                     self.ticketQuantity = eventDetails["amount_bought"].int!
-                    print("shiet:",eventDetails["add_ons"].arrayValue)
                     self.add_ons = eventDetails["add_ons"].arrayValue
-                    ticket_qty = eventDetails["amount_bought"].int! - eventDetails["is_ticket_redeemed"].int!
+                    
+                    if(self.addon_maxQtys.count > 0){
+                        self.addon_maxQtys = [] //reset value to override it
+                    }
+                    for add_on in self.add_ons { //set max quantities available
+                        self.addon_maxQtys.append(add_on["quantity"].int!)
+                    }
+                    print(self.addon_maxQtys)
+                    self.ticketQuantity = eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!
+                    if(self.ticketQuantity < 1){
+                        self.scanButton.isEnabled = false
+                    }
                     var imageRef = "placeholder"
                     var imageData: Data? = nil
 

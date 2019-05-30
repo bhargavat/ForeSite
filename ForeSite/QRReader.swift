@@ -10,6 +10,8 @@
 import Foundation
 import AVFoundation
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -100,16 +102,56 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
+            if(stringValue ~= "[a-z0-9]{24}[:][0-9]{1}"){
+                found(code: stringValue)
+            }else{
+                let alert = UIAlertController(title: "Invalid Ticket", message: "Please try again", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+                    self.captureSession.startRunning()
+                }))
+                self.present(alert, animated: true)
+            }
         }
         
-        dismiss(animated: true)
+        
+        //dismiss(animated: true)
     }
     
     //function to execute after successful QR code
     func found(code: String) {
         print(code)
+        let data = code.split(separator: ":")
+        print("data:",data)
+        let parameters: Parameters = ["ticket_id":data[0],"tickets_redeemed": Int(data[1])!]
+        AF.request(base_url + "/foresite/redeemTickets", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            do{
+                let json = try JSON(data: response.data!)
+                if(json["response"] == "error"){
+                    let alert = UIAlertController(title: "Invalid Tickets", message: "Ticket(s) have been previously redeemed.", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+                        self.captureSession.startRunning()
+                    }))
+                    self.present(alert, animated: true)
+                }
+                if(json["response"] == "success"){
+                    
+                    print(json)
+                    let alert = UIAlertController(title: "Success", message: "Tickets redeemed successfully", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+                        self.captureSession.startRunning()
+                    }))
+                    self.present(alert, animated: true)
+                }
+            }catch{
+                print("ERROR: Failed to cast to JSON format")
+            }
+        }
     }
+    
     
     override var prefersStatusBarHidden: Bool {
         return true

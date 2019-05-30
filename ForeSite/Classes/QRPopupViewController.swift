@@ -13,7 +13,7 @@ class QRPopupViewController: UIViewController {
     @IBOutlet weak var DoneBtn: RoundButton!
     var QRData: String = ""
     @IBOutlet weak var QRImageView: UIImageView!
-    
+    weak var delegate: updateTicketQuantity?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +21,8 @@ class QRPopupViewController: UIViewController {
     }
 
     @IBAction func onDoneClick(_ sender: Any) {
+        //print(delegate)
+        delegate?.updateTicketQuantity()
         self.dismiss(animated: true)
     }
 

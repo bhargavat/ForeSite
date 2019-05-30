@@ -10,5 +10,5 @@ import Foundation
 
 let my_string = "HERRO"
 var username:String = ""
-let base_url:String = "https://d318b086.ngrok.io"
+let base_url:String = "https://bdf12e10.ngrok.io"
 var ticket_qty = 0
