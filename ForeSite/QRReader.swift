@@ -47,8 +47,7 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if (captureSession.canAddOutput(metadataOutput)) {
             captureSession.addOutput(metadataOutput)
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            //metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
-            metadataOutput.metadataObjectTypes = metadataOutput.availableMetadataObjectTypes
+            metadataOutput.metadataObjectTypes = [.qr]
         } else {
             failed()
             return
@@ -97,7 +96,7 @@ class QRReader: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession.stopRunning()
-        
+        print("meta: ",metadataObjects)
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
