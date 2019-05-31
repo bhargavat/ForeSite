@@ -8,7 +8,6 @@
 
 import Foundation
 
-let my_string = "HERRO"
 var username:String = ""
-let base_url:String = "https://bdf12e10.ngrok.io"
+let base_url:String = "https://09e3c5b7.ngrok.io"
 var ticket_qty = 0

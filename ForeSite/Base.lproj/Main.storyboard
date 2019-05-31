@@ -448,12 +448,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TICKETS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPo-kx-8y6">
+                                <rect key="frame" x="152" y="168" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0sZ-8U-8Zj" firstAttribute="leading" secondItem="lZm-Oh-6TA" secondAttribute="leading" constant="20" id="1Za-nh-MiU"/>
+                            <constraint firstItem="xPo-kx-8y6" firstAttribute="centerX" secondItem="NvX-nW-A9C" secondAttribute="centerX" id="4Jj-Gh-XD7"/>
                             <constraint firstItem="lZm-Oh-6TA" firstAttribute="trailing" secondItem="AXq-pQ-n8S" secondAttribute="trailing" constant="114" id="5J2-Sl-C94"/>
                             <constraint firstItem="AXq-pQ-n8S" firstAttribute="leading" secondItem="NvX-nW-A9C" secondAttribute="trailing" constant="24" id="8gn-nj-uzC"/>
+                            <constraint firstItem="xPo-kx-8y6" firstAttribute="leading" secondItem="lZm-Oh-6TA" secondAttribute="leading" constant="152" id="8mi-ez-FXQ"/>
                             <constraint firstItem="GVd-VR-oTa" firstAttribute="top" secondItem="NvX-nW-A9C" secondAttribute="bottom" constant="41" id="FWm-sS-YZT"/>
                             <constraint firstItem="lZm-Oh-6TA" firstAttribute="trailing" secondItem="ix3-22-uqE" secondAttribute="trailing" constant="20" id="KWI-ek-qz9"/>
                             <constraint firstItem="B3R-Gg-Tfg" firstAttribute="top" secondItem="lZm-Oh-6TA" secondAttribute="top" constant="39" id="VFm-cb-pDX"/>
@@ -464,6 +472,7 @@
                             <constraint firstItem="lZm-Oh-6TA" firstAttribute="trailing" secondItem="GVd-VR-oTa" secondAttribute="trailing" constant="20" id="eP8-Bv-AEB"/>
                             <constraint firstItem="0Gb-aI-hJn" firstAttribute="top" secondItem="kPI-lD-SJP" secondAttribute="bottom" constant="22" id="fs7-ry-8w7"/>
                             <constraint firstItem="0Gb-aI-hJn" firstAttribute="leading" secondItem="lZm-Oh-6TA" secondAttribute="leading" constant="16" id="fsy-1N-38c"/>
+                            <constraint firstItem="GVd-VR-oTa" firstAttribute="top" secondItem="xPo-kx-8y6" secondAttribute="bottom" constant="20" id="hXi-Yb-vjh"/>
                             <constraint firstItem="ix3-22-uqE" firstAttribute="top" secondItem="V5x-7w-7sG" secondAttribute="bottom" constant="23" id="kfS-aY-r5f"/>
                             <constraint firstItem="0sZ-8U-8Zj" firstAttribute="top" secondItem="ix3-22-uqE" secondAttribute="bottom" constant="104" id="lhb-9q-QNQ"/>
                             <constraint firstItem="NvX-nW-A9C" firstAttribute="leading" secondItem="B3R-Gg-Tfg" secondAttribute="trailing" constant="28" id="nbn-nR-odW"/>
@@ -488,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zyg-ai-Vv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935.2" y="-4.9475262368815596"/>
+            <point key="canvasLocation" x="1933.5999999999999" y="-5.8470764617691158"/>
         </scene>
         <!--Title-->
         <scene sceneID="6g1-cD-HAT">
@@ -611,8 +620,8 @@
                                                         <constraint firstAttribute="height" constant="90" id="p0K-6L-aBW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Purchase Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AD5-Nb-xxL" userLabel="Event Purchase Date Label">
-                                                    <rect key="frame" x="131" y="115" width="263" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Purchase Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AD5-Nb-xxL" userLabel="Event Purchase Date Label">
+                                                    <rect key="frame" x="131" y="115" width="112" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -627,13 +636,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Start" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Iv-jr-0kG">
-                                                    <rect key="frame" x="135" y="71" width="259" height="21"/>
+                                                    <rect key="frame" x="135" y="71" width="108" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event End" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvU-cz-ke4">
-                                                    <rect key="frame" x="135" y="92" width="259" height="21"/>
+                                                    <rect key="frame" x="135" y="92" width="108" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1482,6 +1491,7 @@
                     <connections>
                         <outlet property="AddOnRedeemTableView" destination="0Ij-FY-pO1" id="fZ2-3s-wZA"/>
                         <outlet property="RedeemLabel" destination="Rk8-uw-Uvd" id="YqU-id-NTQ"/>
+                        <outlet property="addOnRedeemButton" destination="FpV-Yz-a3a" id="CAe-A3-6QF"/>
                         <outlet property="eventEndLabel" destination="kzh-3x-wJ6" id="JhD-Nv-Zwx"/>
                         <outlet property="eventImage" destination="Xne-nQ-QkO" id="fGQ-Gz-8ba"/>
                         <outlet property="eventLocationLabel" destination="aer-CZ-xxX" id="rz8-Cq-QWw"/>

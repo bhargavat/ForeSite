@@ -52,7 +52,6 @@ class FreeResponseViewCell: UITableViewCell, UITextViewDelegate{
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         delegate?.freeResponseUpdated(question: surveyQuestionLabel.text!, answer: textView.text!, index: indexPath)
-        print(textView.text!) //the textView parameter is the textView where text was changed
     }
 }
 
@@ -72,7 +71,6 @@ class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let index = self.singlePickerView.selectedRow(inComponent: component)
-        print("indexPath:",self.indexPath)
         delegate?.singleChoiceUpdated(question: surveyQuestionLabel.text!, answer: self.pickerData[index], index: self.indexPath)
     }
     
@@ -129,30 +127,23 @@ class MultipleChoiceViewCell: UITableViewCell, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SimpleTableViewCell{
-//            print(cell.optionLabel.text!)
-//            print(indexPath.row)
             delegate?.multiChoiceUpdated(question: surveyQuestionLabel.text!, answer: cell.optionLabel.text!, index: self.indexPath, selection: "select")
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SimpleTableViewCell{
-//            print(cell.optionLabel.text!)
-//            print(indexPath.row)
             delegate?.multiChoiceUpdated(question: surveyQuestionLabel.text!, answer: cell.optionLabel.text!, index: self.indexPath, selection: "deselect")
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("options")
         return options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print("celly")
         let return_cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableCell", for: indexPath) as! SimpleTableViewCell
 
         return_cell.optionLabel.text = options[indexPath.row]
-        print(options[indexPath.row],":",selectedOptions[options[indexPath.row]])
         if(selectedOptions != []){
             if(selectedOptions[options[indexPath.row]][self.indexPath] == 1){
                 self.optionsList.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)

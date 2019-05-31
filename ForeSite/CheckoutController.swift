@@ -71,11 +71,16 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
         return self.add_ons.count
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Add Ons"
+    }
+    
     //generate each cell in table view. called once per cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            //print("RELOADING cell #",indexPath.row)
             let add_on = JSON(self.add_ons[indexPath.row])
-            //print("cell:",add_ons)
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnCell", for: indexPath) as! AddOnTableViewCell
             cell.delegate = self
             let price = Double(add_on["price"].int!)/100.0
@@ -101,10 +106,9 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
     
     //update the ticket quantity value
     @IBAction func ticketQtyUpdate(_ sender: UIButton) {
-        print("QUANTITY UPDATE")
         let quantity:String = quantityLabel.text!
         let btnText: String = sender.titleLabel!.text!
-        //print(perTicketTotal)
+
         if ((btnText == "–" && Int(quantity)! > 1) || (btnText == "+" && Int(quantity)! < 9)) {
             var multiplier: Int = 1
             if(sender.titleLabel!.text == "–"){
@@ -123,24 +127,20 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
                 correctAddOnQty()
                 calculateTotalPrice()
             }
-            //AddOnTableView.reloadData()
         }
         
     }
     
     func calculateTotalPrice(){
         self.addOnPrice = 0
-        print(add_ons)
         for idx in 0..<add_ons.count {
             var c_addon: Dictionary<String, Any> = add_ons[idx] as! Dictionary<String, Any>
             let quantity: Double = Double(c_addon["quantity"] as! Int)
             print("quantity ",quantity)
             self.addOnPrice += (((c_addon["price"] as! Double)/100.0).dollarRoundDouble()) * quantity
         }
-        print("price:",addOnPrice)
-        print(String((self.addOnPrice + self.event_subtotal).dollarRound()))
+        
         self.totalPriceLabel.text = String((self.addOnPrice + Double(self.quantityLabel.text!)! * self.event_subtotal).dollarRound())
-        //self.subtotalLabel.text = String(self.addOnPrice)
     }
     
     //synchronizes add-on quantities when ticket quantity decremented
@@ -161,7 +161,6 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
                 destination.checkout_event = checkout_event!
                 destination.survey_questions = survey_questions!
                 destination.add_ons = self.add_ons
-                print("segue1:",survey_questions!)
             }
         }
     }

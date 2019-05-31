@@ -27,6 +27,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var AddOnRedeemTableView: UITableView!
     @IBOutlet weak var RedeemLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var addOnRedeemButton: RoundButton!
     
     var ticketID: String = ""
     var ticketsRedeemed: Int = 0 //
@@ -42,10 +43,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.AddOnRedeemTableView.delegate = self
         self.AddOnRedeemTableView.dataSource = self
         
-        print("ID:", ticketID)
-        
         self.getEventDetails()
-//        self.AddOnRedeemTableView.register(AddOnTableViewCell.self, forCellReuseIdentifier: "AddOnRedeemCell")
     }
     
     //delegate function
@@ -57,7 +55,6 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             do{
                 let json = try JSON(data: response.data!)
                 if(json["response"] == "success"){
-                    print("SUCCESS")
                     let eventDetails:JSON = json["results"]
                     self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
                     self.ticketQuantity = eventDetails["amount_bought"].int!
@@ -84,10 +81,25 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if(c_addon["name"].string! == label){
                 c_addon["quantity"] = JSON(value)
                 self.add_ons[idx] = c_addon
-                print(add_ons)
+                self.disableAddOnRedemptionButton()
                 return
             }
         }
+    }
+    
+    //disable add-on redemption button if quantity used up
+    func disableAddOnRedemptionButton(){
+        for add_on in add_ons{
+            if(add_on["quantity"].int! > 0){
+                addOnRedeemButton.isEnabled = true
+                addOnRedeemButton.backgroundColor = #colorLiteral(red: 0.2588235294, green: 0.7529411765, blue: 0.7921568627, alpha: 1)
+                addOnRedeemButton.alpha = CGFloat(1.0)
+                return
+            }
+        }
+        addOnRedeemButton.isEnabled = false
+        addOnRedeemButton.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        addOnRedeemButton.alpha = CGFloat(0.4)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,7 +110,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count: ",add_ons.count)
+        //print("count: ",add_ons.count)
         return add_ons.count
     }
     
@@ -167,13 +179,12 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
             do{
                 let json = try JSON(data: response.data!)
                 if(json["response"] == "success"){
-                    
-                    print(json)
                     let alert = UIAlertController(title: "Success", message: "Add-ons redeemed successfully", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
                     self.present(alert, animated: true, completion: {
                         self.getEventDetails()
+                    self.disableAddOnRedemptionButton()
                     })
                 }
             }catch{
@@ -185,13 +196,11 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func getEventDetails(){
         let parameters = ["ticket_id": ticketID]
         AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
-            //print("resp",response.data!)
             do{
                 let json = try JSON(data: response.data!)
                 if(json["response"] == "success"){
                     
                     let eventDetails:JSON = json["results"]
-                    print(eventDetails)
                     self.eventTitleLabel.text = eventDetails["title"].string!
                     self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
                     self.eventLocationLabel.text = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
@@ -201,14 +210,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
                     self.ticketQuantity = eventDetails["amount_bought"].int!
                     self.add_ons = eventDetails["add_ons"].arrayValue
-                    
+                    self.disableAddOnRedemptionButton()
+
                     if(self.addon_maxQtys.count > 0){
                         self.addon_maxQtys = [] //reset value to override it
                     }
                     for add_on in self.add_ons { //set max quantities available
                         self.addon_maxQtys.append(add_on["quantity"].int!)
                     }
-                    print(self.addon_maxQtys)
                     self.ticketQuantity = eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!
                     if(self.ticketQuantity < 1){
                         self.scanButton.isEnabled = false

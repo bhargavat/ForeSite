@@ -129,7 +129,6 @@ class AuthController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func registerNewUser(_ sender: Any) {
-        print(my_string)
         if(isvalidRegistrationInput() == false){
             addWarningToFields()
             let alertController = UIAlertController(title: "Registration Failed", message:
