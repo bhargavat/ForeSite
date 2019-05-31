@@ -201,6 +201,7 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if(json["response"] == "success"){
                     
                     let eventDetails:JSON = json["results"]
+                    
                     self.eventTitleLabel.text = eventDetails["title"].string!
                     self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
                     self.eventLocationLabel.text = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!

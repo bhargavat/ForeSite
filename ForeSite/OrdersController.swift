@@ -109,6 +109,18 @@ class OrdersController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 if(json["response"] == "success"){
                     //print("HERE")
                     self.user_tickets = json["results"].arrayValue
+                    self.user_tickets.sort(by: {(a,b) -> Bool in
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+
+                        guard let date_a = dateFormatter.date(from:a["creation_date"].string!) else{
+                            fatalError()
+                        }
+                        guard let date_b = dateFormatter.date(from:b["creation_date"].string!) else{
+                            fatalError()
+                        }
+                        return date_a > date_b
+                    })
                     self.ordersTableView.reloadData()
                 }
             }catch{
