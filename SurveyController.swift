@@ -286,7 +286,3 @@ class SurveyController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
 }
-
-
-//to-do: finish finding the selected row
-//store array of selected cells

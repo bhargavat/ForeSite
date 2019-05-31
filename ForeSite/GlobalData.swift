@@ -8,6 +8,11 @@
 
 import Foundation
 
+//user currently logged in
 var username:String = ""
-let base_url:String = "https://09e3c5b7.ngrok.io"
+
+//base url of REST API server
+let base_url:String = "https://50137cc8.ngrok.io"
+
+//ticket_qty selected by user at checkout
 var ticket_qty = 0

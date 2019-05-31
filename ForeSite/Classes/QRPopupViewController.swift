@@ -12,11 +12,13 @@ class QRPopupViewController: UIViewController {
 
     @IBOutlet weak var DoneBtn: RoundButton!
     var QRData: String = ""
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var QRImageView: UIImageView!
     weak var delegate: updateTicketQuantity?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let metadata = QRData.split(separator: ":")
+        quantityLabel.text = "x" + String(metadata[1])
         self.QRImageView.image = QRData.generateQRCode()
     }
 

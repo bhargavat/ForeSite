@@ -35,50 +35,54 @@ class EventViewController: UIViewController {
         }else{
             self.navigationItem.title = getTruncatedTitle(str: event!.title)
         }
-
-        let parameters: Parameters = ["event_id": event?.id as Any]
-
-        AF.request(base_url + "/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
-
-            do{
+        
+        populateEventDetails()
+    }
+    func populateEventDetails(){
+        if Connectivity.isConnectedToInternet {
+            let parameters: Parameters = ["event_id": event?.id as Any]
+        
+            AF.request(base_url + "/foresite/getEventDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                 
-                let json = try JSON(data: response.data!)
-                let eventDetails = json["results"]
-                
-                var imageRef = "placeholder"
-                var imageData: Data? = nil
-                //print(c_event["thumbnail_icon"].exists())
-                self.imageView.image = UIImage(named: "placeholder")
-                if(eventDetails["thumbnail_icon"].string != nil){
-                    imageRef = eventDetails["thumbnail_icon"].string!
-                    let imageUrl = URL(string: imageRef)
-                    if((imageUrl) != nil){
-                        imageData = try? Data(contentsOf: imageUrl!)
-                        if(imageData != nil){
-                            self.imageView.image = UIImage(data: imageData!)
+                do{
+                    
+                    let json = try JSON(data: response.data!)
+                    let eventDetails = json["results"]
+                    
+                    var imageRef = "placeholder"
+                    var imageData: Data? = nil
+                    //print(c_event["thumbnail_icon"].exists())
+                    self.imageView.image = UIImage(named: "placeholder")
+                    if(eventDetails["thumbnail_icon"].string != nil){
+                        imageRef = eventDetails["thumbnail_icon"].string!
+                        let imageUrl = URL(string: imageRef)
+                        if((imageUrl) != nil){
+                            imageData = try? Data(contentsOf: imageUrl!)
+                            if(imageData != nil){
+                                self.imageView.image = UIImage(data: imageData!)
+                            }
                         }
                     }
+                    
+                    let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
+                    
+                    let eventTimeLabelText: String = "From: " + self.reformatDate(dateString: eventDetails["start_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " +  self.reformatDate(dateString: eventDetails["start_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a") + "\n" + "To: " + self.reformatDate(dateString: eventDetails["end_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + self.reformatDate(dateString: eventDetails["end_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a")
+                    
+                    self.eventTimeLabel.text = eventTimeLabelText
+                    self.testHTTPLabel.text = str_location
+                    self.eventNameLabel.text = eventDetails["title"].string!
+                    self.eventDescriptionTextView.text = eventDetails["description"].string!
+                    self.eventDescriptionTextView.isEditable = false
+                    
+                    self.survey_questions = JSON(eventDetails["survey_questions"])
+                }catch{
+                    print("ERROR: Failed to cast to JSON format")
                 }
-                
-                let str_location = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
-                
-                let eventTimeLabelText: String = "From: " + self.reformatDate(dateString: eventDetails["start_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " +  self.reformatDate(dateString: eventDetails["start_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a") + "\n" + "To: " + self.reformatDate(dateString: eventDetails["end_date"].string!, fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + self.reformatDate(dateString: eventDetails["end_time"].string!, fromFormat: "HH:mm", toFormat: "h:mm a")
-                
-                self.eventTimeLabel.text = eventTimeLabelText
-                self.testHTTPLabel.text = str_location
-                self.eventNameLabel.text = eventDetails["title"].string!
-                self.eventDescriptionTextView.text = eventDetails["description"].string!
-                self.eventDescriptionTextView.isEditable = false
-                
-                self.survey_questions = JSON(eventDetails["survey_questions"])
-            }catch{
-                print("ERROR: Failed to cast to JSON format")
+                print("Request: \(String(describing: response.request))")
+                print("Response: \(String(describing: response.response))")
+                print("Error: \(String(describing: response.error))")
             }
-            print("Request: \(String(describing: response.request))")
-            print("Response: \(String(describing: response.response))")
-            print("Error: \(String(describing: response.error))")
         }
-        // Do any additional setup after loading the view.
     }
     
     func reformatDate(dateString: String, fromFormat:String, toFormat:String) -> String {

@@ -48,29 +48,30 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //delegate function
     func updateTicketQuantity() {
-        let parameters: Parameters = ["ticket_id":ticketID]
-        
-        AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+        if Connectivity.isConnectedToInternet {
+            let parameters: Parameters = ["ticket_id":ticketID]
+            AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
             
-            do{
-                let json = try JSON(data: response.data!)
-                if(json["response"] == "success"){
-                    let eventDetails:JSON = json["results"]
-                    self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
-                    self.ticketQuantity = eventDetails["amount_bought"].int!
-                    
-                    if((self.ticketQuantity - self.ticketsRedeemed) < Int(self.redeemQtySelected)){
-                        self.redeemQtySelected = 1.0
+                do{
+                    let json = try JSON(data: response.data!)
+                    if(json["response"] == "success"){
+                        let eventDetails:JSON = json["results"]
+                        self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
+                        self.ticketQuantity = eventDetails["amount_bought"].int!
+                        
+                        if((self.ticketQuantity - self.ticketsRedeemed) < Int(self.redeemQtySelected)){
+                            self.redeemQtySelected = 1.0
+                        }
+                        if(self.ticketQuantity - self.ticketsRedeemed < 1){
+                            self.scanButton.isEnabled = false
+                            self.redeemQtySelected = 0.0
+                        }
+                        self.RedeemLabel.text = "Redeem \(String(Int(self.redeemQtySelected))) of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
+                        self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
                     }
-                    if(self.ticketQuantity - self.ticketsRedeemed < 1){
-                        self.scanButton.isEnabled = false
-                        self.redeemQtySelected = 0.0
-                    }
-                    self.RedeemLabel.text = "Redeem \(String(Int(self.redeemQtySelected))) of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
-                    self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
+                }catch{
+                    print("ERROR: Failed to cast to JSON format")
                 }
-            }catch{
-                print("ERROR: Failed to cast to JSON format")
             }
         }
     }
@@ -173,78 +174,82 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return result
     }
     func redeemAddOns(){
-        let parameters: Parameters = ["ticket_id":ticketID, "add_ons": JSON(add_ons).rawValue]
-        AF.request(base_url + "/foresite/redeemAddOns", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
-            
-            do{
-                let json = try JSON(data: response.data!)
-                if(json["response"] == "success"){
-                    let alert = UIAlertController(title: "Success", message: "Add-ons redeemed successfully", preferredStyle: .alert)
-                    
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(alert, animated: true, completion: {
-                        self.getEventDetails()
-                    self.disableAddOnRedemptionButton()
-                    })
+        if Connectivity.isConnectedToInternet {
+            let parameters: Parameters = ["ticket_id":ticketID, "add_ons": JSON(add_ons).rawValue]
+            AF.request(base_url + "/foresite/redeemAddOns", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+                
+                do{
+                    let json = try JSON(data: response.data!)
+                    if(json["response"] == "success"){
+                        let alert = UIAlertController(title: "Success", message: "Add-ons redeemed successfully", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alert, animated: true, completion: {
+                            self.getEventDetails()
+                        self.disableAddOnRedemptionButton()
+                        })
+                    }
+                }catch{
+                    print("ERROR: Failed to cast to JSON format")
                 }
-            }catch{
-                print("ERROR: Failed to cast to JSON format")
             }
         }
     }
     
     func getEventDetails(){
-        let parameters = ["ticket_id": ticketID]
-        AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
-            do{
-                let json = try JSON(data: response.data!)
-                if(json["response"] == "success"){
-                    
-                    let eventDetails:JSON = json["results"]
-                    
-                    self.eventTitleLabel.text = eventDetails["title"].string!
-                    self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
-                    self.eventLocationLabel.text = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
-                    self.eventStartLabel.text = "From: " + eventDetails["start_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["start_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
-                    self.eventEndLabel.text = "To: " + eventDetails["end_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["end_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
-                    self.RedeemLabel.text = "Redeem 1 of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
-                    self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
-                    self.ticketQuantity = eventDetails["amount_bought"].int!
-                    self.add_ons = eventDetails["add_ons"].arrayValue
-                    self.disableAddOnRedemptionButton()
+        if Connectivity.isConnectedToInternet {
+            let parameters = ["ticket_id": ticketID]
+            AF.request(base_url + "/foresite/getTicketDetails", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+                do{
+                    let json = try JSON(data: response.data!)
+                    if(json["response"] == "success"){
+                        
+                        let eventDetails:JSON = json["results"]
+                        
+                        self.eventTitleLabel.text = eventDetails["title"].string!
+                        self.eventTicketQtyLabel.text = "Quantity: " + String(eventDetails["amount_bought"].int!) + " (\(String(eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!)) left)"
+                        self.eventLocationLabel.text = eventDetails["street"].string! + "\n" + eventDetails["city"].string! + ", " + eventDetails["state"].string! + " " + eventDetails["zip_code"].string!
+                        self.eventStartLabel.text = "From: " + eventDetails["start_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["start_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
+                        self.eventEndLabel.text = "To: " + eventDetails["end_date"].string!.reformatDate( fromFormat: "MM-dd-yyyy", toFormat: "MMMM dd, yyyy") + " " + eventDetails["end_time"].string!.reformatDate(fromFormat: "HH:mm", toFormat: "h:mm a")
+                        self.RedeemLabel.text = "Redeem 1 of " + String(eventDetails["amount_bought"].int!-eventDetails["tickets_redeemed"].int!)
+                        self.ticketsRedeemed = eventDetails["tickets_redeemed"].int!
+                        self.ticketQuantity = eventDetails["amount_bought"].int!
+                        self.add_ons = eventDetails["add_ons"].arrayValue
+                        self.disableAddOnRedemptionButton()
 
-                    if(self.addon_maxQtys.count > 0){
-                        self.addon_maxQtys = [] //reset value to override it
-                    }
-                    for add_on in self.add_ons { //set max quantities available
-                        self.addon_maxQtys.append(add_on["quantity"].int!)
-                    }
-                    self.ticketQuantity = eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!
-                    if(self.ticketQuantity < 1){
-                        self.scanButton.isEnabled = false
-                    }
-                    var imageRef = "placeholder"
-                    var imageData: Data? = nil
-
-                    if(eventDetails["thumbnail_icon"].string != nil){
-                        imageRef = eventDetails["thumbnail_icon"].string!
-                        let imageUrl = URL(string: imageRef)
-                        if((imageUrl) != nil){
-                            imageData = try? Data(contentsOf: imageUrl!)
+                        if(self.addon_maxQtys.count > 0){
+                            self.addon_maxQtys = [] //reset value to override it
                         }
+                        for add_on in self.add_ons { //set max quantities available
+                            self.addon_maxQtys.append(add_on["quantity"].int!)
+                        }
+                        self.ticketQuantity = eventDetails["amount_bought"].int! - eventDetails["tickets_redeemed"].int!
+                        if(self.ticketQuantity < 1){
+                            self.scanButton.isEnabled = false
+                        }
+                        var imageRef = "placeholder"
+                        var imageData: Data? = nil
+
+                        if(eventDetails["thumbnail_icon"].string != nil){
+                            imageRef = eventDetails["thumbnail_icon"].string!
+                            let imageUrl = URL(string: imageRef)
+                            if((imageUrl) != nil){
+                                imageData = try? Data(contentsOf: imageUrl!)
+                            }
+                        }
+                        
+                        var image: UIImage = UIImage(named: "placeholder")!
+                        
+                        if(imageRef != "placeholder" && imageData != nil){
+                            image = UIImage(data: imageData!)!
+                        }
+                        self.eventImage.image = image
+                        
+                        self.AddOnRedeemTableView.reloadData()
                     }
-                    
-                    var image: UIImage = UIImage(named: "placeholder")!
-                    
-                    if(imageRef != "placeholder" && imageData != nil){
-                        image = UIImage(data: imageData!)!
-                    }
-                    self.eventImage.image = image
-                    
-                    self.AddOnRedeemTableView.reloadData()
+                }catch{
+                    print("ERROR: Failed to cast to JSON format")
                 }
-            }catch{
-                print("ERROR: Failed to cast to JSON format")
             }
         }
     }
