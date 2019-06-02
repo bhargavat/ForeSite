@@ -113,6 +113,17 @@ extension UIViewController{
     }
 }
 
+//ref: https://stackoverflow.com/questions/54455940/swift-4-2-make-bottom-of-tableview-move-up-when-keyboard-shows
+extension UITableView {
+    
+    func setBottomInset(to value: CGFloat) {
+        let edgeInset = UIEdgeInsets(top: 0, left: 0, bottom: value, right: 0)
+        
+        self.contentInset = edgeInset
+        self.scrollIndicatorInsets = edgeInset
+    }
+}
+
 //reference: https://stackoverflow.com/questions/29046255/how-to-append-new-data-to-an-existing-json-arrayswiftyjson
 extension JSON{
     mutating func appendIfArray(json:JSON){

@@ -53,6 +53,7 @@ class FreeResponseViewCell: UITableViewCell, UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         delegate?.freeResponseUpdated(question: surveyQuestionLabel.text!, answer: textView.text!, index: indexPath)
     }
+    
 }
 
 class SingleResponseViewCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource {

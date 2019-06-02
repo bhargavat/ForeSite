@@ -54,6 +54,31 @@ class SurveyController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SurveyController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SurveyController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+            print("Notification: Keyboard will show")
+            self.surveyQuestionsTableView.setBottomInset(to: keyboardHeight)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        print("Notification: Keyboard will hide")
+        self.surveyQuestionsTableView.setBottomInset(to: 0.0)
+    }
+    
     func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         self.surveyQuestionsTableView.resignFirstResponder()
     }
@@ -81,9 +106,8 @@ class SurveyController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func freeResponseUpdated(question: String, answer: String, index: Int){
         var new_resp = responses["survey_questions"]
+        var idx: Int = 0
         for obj in new_resp{
-            print("obj.0:", obj.0, "obj.1:", obj.1)
-            
             var curr_obj:JSON = obj.1
             if(curr_obj["question"].string! == question){
                 var answers:JSON = curr_obj["answers"]
@@ -92,8 +116,12 @@ class SurveyController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 print("currObj:",curr_obj["answers"])
                 new_resp[Int(obj.0)!] = curr_obj
                 responses["survey_questions"] = new_resp
+                
+                self.surveyQuestionsTableView.scrollToRow(at: IndexPath(row: idx, section: index), at: .top, animated: true) //focuses table view to the text field when typing
+                
                 break
             }
+            idx += 1
         }
         print("UPDATED:", responses["survey_questions"])
     }
@@ -160,6 +188,7 @@ class SurveyController: UIViewController, UITableViewDelegate, UITableViewDataSo
 //        surveyQuestionsTableView.reloadData()
 //    }
     
+
     //reference: https://stackoverflow.com/questions/46349740/how-to-preserve-user-input-in-uitableviewcell-before-dequeue
 //    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        // do something with the cell before it gets deallocated

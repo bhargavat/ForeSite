@@ -61,7 +61,7 @@ class AuthController: UIViewController, UITextFieldDelegate{
         let usernameInput = usernameField.text
         let passwordInput = passwordField.text
         
-        if (usernameInput != "" && passwordInput != ""){
+        if (usernameInput != "" && passwordInput != "" && Connectivity.isConnectedToInternet){
             let parameters: Parameters = ["user_name":usernameInput!, "password": passwordInput!.md5()]
             
             AF.request(base_url + "/foresite/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
@@ -145,35 +145,37 @@ class AuthController: UIViewController, UITextFieldDelegate{
                  "password": r_passwordField.text!.md5()]
             
             if(isvalidRegistrationInput() == true){
-                AF.request(base_url + "/foresite/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
-                    
-                    do{
-                        let json = try JSON(data: response.data!)
+                if(Connectivity.isConnectedToInternet){
+                    AF.request(base_url + "/foresite/createUser", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
                         
-                        if(json["response"] == "success"){
+                        do{
+                            let json = try JSON(data: response.data!)
                             
-                            let alertController = UIAlertController(title: "Success", message:
-                                "Registration is successful", preferredStyle: .alert)
-                            
-                            self.present(alertController, animated: true, completion: {
-                                let when = DispatchTime.now() + 4
-                                DispatchQueue.main.asyncAfter(deadline: when){
-                                    self.performSegue(withIdentifier: "DismissRegisterSegue", sender: self)
-                                }
+                            if(json["response"] == "success"){
+                                
+                                let alertController = UIAlertController(title: "Success", message:
+                                    "Registration is successful", preferredStyle: .alert)
+                                
+                                self.present(alertController, animated: true, completion: {
+                                    let when = DispatchTime.now() + 4
+                                    DispatchQueue.main.asyncAfter(deadline: when){
+                                        self.performSegue(withIdentifier: "DismissRegisterSegue", sender: self)
+                                    }
 
-                            })
-                            
-                            
-                        }else{
-                            let errorMsg = json["message"].string
-                            let alertController = UIAlertController(title: "Registration Failed", message:
-                                errorMsg, preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-                            
-                            self.present(alertController, animated: true, completion: nil)
+                                })
+                                
+                                
+                            }else{
+                                let errorMsg = json["message"].string
+                                let alertController = UIAlertController(title: "Registration Failed", message:
+                                    errorMsg, preferredStyle: .alert)
+                                alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                                
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        }catch{
+                            print("ERROR: Failed to cast request to JSON format")
                         }
-                    }catch{
-                        print("ERROR: Failed to cast request to JSON format")
                     }
                 }
             }

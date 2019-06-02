@@ -29,12 +29,14 @@ class OrderViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var addOnRedeemButton: RoundButton!
     
+    var checkout_event: event!
     var ticketID: String = ""
     var ticketsRedeemed: Int = 0 //
     var ticketQuantity: Int = 0
     var redeemQtySelected: Double = 1
     var add_ons: [JSON] = []
     var addon_maxQtys: [Int] = []
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         let backButton: UIBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.back))

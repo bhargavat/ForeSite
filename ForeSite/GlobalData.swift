@@ -12,7 +12,11 @@ import Foundation
 var username:String = ""
 
 //base url of REST API server
-let base_url:String = "https://50137cc8.ngrok.io"
+let base_url:String = "https://1cd80a36.ngrok.io"
 
 //ticket_qty selected by user at checkout
 var ticket_qty = 0
+
+//chosen event's subtotal and total price
+var selected_event_subtotal: Double = 0.0 //price per base ticket
+var selected_event_total: Double = 0.00

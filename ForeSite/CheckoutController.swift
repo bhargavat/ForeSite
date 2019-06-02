@@ -16,8 +16,6 @@ protocol AddOnUpdated: class {
 
 class CheckoutController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddOnUpdated{
 
-    
-    
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var AddOnTableView: UITableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
@@ -161,6 +159,8 @@ class CheckoutController: UIViewController, UITableViewDelegate, UITableViewData
                 destination.checkout_event = checkout_event!
                 destination.survey_questions = survey_questions!
                 destination.add_ons = self.add_ons
+                selected_event_subtotal = self.event_subtotal
+                selected_event_total = Double(totalPriceLabel.text!)!
             }
         }
     }

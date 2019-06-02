@@ -31,6 +31,7 @@
 		049AAF252259DBDA00F7759F /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF242259DBDA00F7759F /* GlobalData.swift */; };
 		049AAF272259E30900F7759F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049AAF262259E30900F7759F /* Extensions.swift */; };
 		04A7A24F22A1EEFC00D65C19 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7A24E22A1EEFC00D65C19 /* Connectivity.swift */; };
+		04A7A25322A3AF5200D65C19 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A7A25222A3AF5200D65C19 /* KeyboardLayoutConstraint.swift */; };
 		04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B30B572265BC3D00A78C84 /* RoundedButton.swift */; };
 		04B30B5B226795C100A78C84 /* CheckoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B30B5A226795C100A78C84 /* CheckoutController.swift */; };
 		04C415B3223DF9D70015D754 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C415B2223DF9D70015D754 /* Alamofire.framework */; };
@@ -98,6 +99,7 @@
 		049AAF242259DBDA00F7759F /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		049AAF262259E30900F7759F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		04A7A24E22A1EEFC00D65C19 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		04A7A25222A3AF5200D65C19 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		04B30B572265BC3D00A78C84 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		04B30B5A226795C100A78C84 /* CheckoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutController.swift; sourceTree = "<group>"; };
 		04C415B2223DF9D70015D754 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +246,7 @@
 				043379D12298AE4D004D6B97 /* QRPopupViewController.swift */,
 				043379D22298AE4D004D6B97 /* QRPopupViewController.xib */,
 				04A7A24E22A1EEFC00D65C19 /* Connectivity.swift */,
+				04A7A25222A3AF5200D65C19 /* KeyboardLayoutConstraint.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				042B8A5121BDAA1800E02F77 /* ForeSite.xcdatamodeld in Sources */,
 				04B30B582265BC3D00A78C84 /* RoundedButton.swift in Sources */,
 				04A7A24F22A1EEFC00D65C19 /* Connectivity.swift in Sources */,
+				04A7A25322A3AF5200D65C19 /* KeyboardLayoutConstraint.swift in Sources */,
 				043379D32298AE4D004D6B97 /* QRPopupViewController.swift in Sources */,
 				04FA8E8921E6E0680082D89C /* UIButtonExtension.swift in Sources */,
 				041AFA97227A10EF00348AE2 /* SurveyController.swift in Sources */,
