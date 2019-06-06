@@ -26,6 +26,7 @@ class PaymentController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         print(checkout_event)
+        removeUnselectedAddOns()
         self.navigationItem.title = "Confirm Order"
         EventTitleLabel.text = checkout_event.title
         SubtotalLabel.text = selected_event_subtotal.dollarRound()
@@ -55,6 +56,18 @@ class PaymentController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         return cell
     }
+    
+    func removeUnselectedAddOns(){
+        var new_list: [Dictionary<String, Any>] = []
+        for idx in 0..<add_ons.count{
+            var c_addon: Dictionary<String, Any> = add_ons[idx] as! Dictionary<String, Any>
+            if(c_addon["quantity"] as! Int > 0){
+                new_list.append(c_addon)
+            }
+        }
+        add_ons = new_list
+    }
+    
     @IBAction func paymentConfirmed(_ sender: Any) {
         if Connectivity.isConnectedToInternet {
             processSubmissionData()
